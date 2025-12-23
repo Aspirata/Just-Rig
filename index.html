@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Rig — Minecraft Rig for Blender</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="lang-wrapper">
+        <button onclick="setLang('ru')" id="btn-ru" class="lang-btn active">RU</button>
+        <button onclick="setLang('en')" id="btn-en" class="lang-btn">EN</button>
+    </div>
+
+    <div class="ambient-bg">
+        <div class="cube-blur" style="width: 300px; height: 300px; top: -50px; left: 20%;"></div>
+        <div class="cube-blur" style="width: 400px; height: 400px; bottom: 10%; right: -100px; background: #6366f1;"></div>
+    </div>
+
+    <nav class="nav-right">
+        <div class="nav-line"></div>
+        <div class="nav-dot active" onclick="scrollToSection('home')" data-label="Главная"></div>
+        <div class="nav-dot" onclick="scrollToSection('features')" data-label="Фичи"></div>
+        <div class="nav-dot" onclick="scrollToSection('rules')" data-label="Правила"></div>
+        <div class="nav-dot" onclick="scrollToSection('install')" data-label="Установка"></div>
+        <div class="nav-dot" onclick="scrollToSection('download')" data-label="Скачать"></div>
+    </nav>
+
+    <main>
+        <section id="home">
+            <div class="badge" data-key="badge">RELEASE VERSION</div>
+            <h1 class="hero-title">JUST RIG</h1>
+            <p class="subtitle" data-key="hero_subtitle">
+                Простой и мощный Minecraft риг для Blender 4.2+.<br>
+                Создан для тех, кто ценит скорость и удобство настройки.
+            </p>
+
+            <div class="info-pills">
+                <div class="pill"><span data-key="pill_blender">Blender: </span>4.2+</div>
+                <div class="pill"><span data-key="pill_version">Последняя Версия: </span>Beta 1</div>
+            </div>
+
+            <div class="rig-viewport">
+                <p style="color: #666;">[ Скриншот вашего рига ]</p>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="hero-title">Отличительные особенности</h2>
+
+            <div class="features-list">
+                <article class="feature-panel">
+                    <div class="feature-text">
+                        <h3 class="feature-title">Математический шейдер лица</h3>
+                        <p>
+                            Модульный и легко модифицируемый шейдер лица,
+                            построенный на математике
+                        </p>
+                    </div>
+
+                    <div class="feature-media">
+                        <img src="resources/install_extension.webp" alt="Face shader">
+                    </div>
+                </article>
+
+                <article class="feature-panel">
+                    <div class="feature-text">
+                        <h3 class="feature-title">Мгновенный импорт рига</h3>
+                        <p>
+                            Опциональное расширение позволяет добавить Just Rig в сцену
+                            за пару кликов через удобный GUI без ручных действий.
+                        </p>
+                    </div>
+
+                    <div class="feature-media">
+                        <video autoplay muted loop playsinline>
+                            <source src="media/import-demo.webm" type="video/webm">
+                        </video>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <section id="rules">
+            <h2 class="hero-title" data-key="rules_title">Правила использования</h2>
+            <div class="rules-container">
+                <div class="rule-item">
+                    <span class="rule-icon">✔️</span>
+                    <p data-key="r1">Свободное использование в любых анимациях.</p>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">✔️</span>
+                    <p data-key="r2">Разрешено модифицировать риг под свои задачи.</p>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-icon">ℹ️</span>
+                    <p data-key="r3">При использовании в анимациях необходимо указать автора рига (Aspirata). В артах можно не указывать, но всё ещё желательно</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://discord.gg/gpfgbkdJ97" class="btn btn-secondary">Discord</a>
+                <a href="https://www.youtube.com/@Aspirata1421" class="btn btn-secondary">YouTube</a>
+                <a href="https://x.com/Aspirata181256" class="btn btn-secondary">Twitter (X)</a>
+            </div>
+        </section>
+
+        <section id="download">
+            <h2 class="hero-title" data-key="download_title">Готовы начать?</h2>
+            <div class="btn-group">
+                <a href="https://github.com/Aspirata/Just-Rig/releases/latest" class="btn btn-primary" data-key="btn_download">СКАЧАТЬ РИГ</a>
+            </div>
+        </section>
+
+        <section id="install">
+            <h2 class="hero-title" data-key="install_title">Простая установка</h2>
+            <div class="install-steps">
+                <div class="step-item">
+                    <div class="step-num">01</div>
+                    <div data-key="step1">Скачайте <b>just_rig.zip</b>.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">02</div>
+                    <div data-key="step2">Просто перетащите файл прямо в окно Blender 4.2+.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">03</div>
+                    <div data-key="step3">Нажмите <b>Shift + A</b> → <b>Just Rig</b>.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

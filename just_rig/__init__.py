@@ -291,6 +291,8 @@ class JustRigUI(bpy.types.Panel):
             row.label(text="Arms Settings:", icon='VIEW_PAN')
             self.settings_button(row, self.ui_props, 'arms_settings_expanded', True, True, True)
             if self.ui_props.arms_settings_expanded:
+                row = sbox.row()
+                row.prop(self.settings_bones["General Settings"], '["Alex Arms"]', toggle=True)
                 col = sbox.column(align=True)
 
                 row1 = col.row()

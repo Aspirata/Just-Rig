@@ -80,7 +80,11 @@ class JustRigUI(bpy.types.Panel):
         if error:
             return error
         
-        mouth_color_names = ["Upper Teeth", "Lower Teeth", "Mouth", "Closed Mouth"]
+        mouth_color_names = [
+            "Upper Teeth", "Lower Teeth", 
+            "Closed Mouth Color", "Mouth", 
+            "Tongue", "Tongue Color"
+            ]
         self.mouth_color_inputs = self._get_node_inputs(node_group, mouth_color_names)
         
         return ""
@@ -267,10 +271,14 @@ class JustRigUI(bpy.types.Panel):
                 row = sbox.row()
                 row.label(text="Mouth Settings:", icon='MODIFIER_ON')
 
+                row = sbox.row()
+                row.prop(self.mouth_color_inputs["Tongue"], 'default_value', text="Tongue", toggle=True)
+                row.enabled = self.settings_bones["Facial Settings"]["Mouth"]
+
                 col = sbox.column(align=True)
 
                 row1 = col.row()
-                row1.prop(self.mouth_color_inputs["Closed Mouth"], 'default_value', text="")
+                row1.prop(self.mouth_color_inputs["Closed Mouth Color"], 'default_value', text="")
                 row1.prop(self.mouth_color_inputs["Upper Teeth"], 'default_value', text="")
                 row1.enabled = self.settings_bones["Facial Settings"]["Mouth"]
 
@@ -278,6 +286,10 @@ class JustRigUI(bpy.types.Panel):
                 row2.prop(self.mouth_color_inputs["Mouth"], 'default_value', text="")
                 row2.prop(self.mouth_color_inputs["Lower Teeth"], 'default_value', text="")
                 row2.enabled = self.settings_bones["Facial Settings"]["Mouth"]
+
+                row = sbox.row()
+                row.prop(self.mouth_color_inputs["Tongue Color"], 'default_value', text="")
+                row.enabled = self.settings_bones["Facial Settings"]["Mouth"] and self.mouth_color_inputs["Tongue"].default_value
 
     def draw_limbs_settings_section(self, layout):
         box = layout.box()

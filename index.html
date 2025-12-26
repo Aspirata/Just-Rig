@@ -3,137 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Rig — Minecraft Rig for Blender</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Just Rig</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="lang-wrapper">
-        <button onclick="setLang('ru')" id="btn-ru" class="lang-btn active">RU</button>
-        <button onclick="setLang('en')" id="btn-en" class="lang-btn">EN</button>
+    <div class="lang-switch-container">
+        <div class="lang-switch" id="langSwitch">
+            <div class="lang-slider"></div>
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
     </div>
 
     <div class="ambient-bg">
-        <div class="cube-blur" style="width: 300px; height: 300px; top: -50px; left: 20%;"></div>
-        <div class="cube-blur" style="width: 400px; height: 400px; bottom: 10%; right: -100px; background: #6366f1;"></div>
+        <div class="cube-blur cb-1"></div>
+        <div class="cube-blur cb-2"></div>
+        <div class="grid-overlay"></div>
     </div>
 
     <nav class="nav-right">
-        <div class="nav-line"></div>
-        <div class="nav-dot active" onclick="scrollToSection('home')" data-label="Главная"></div>
-        <div class="nav-dot" onclick="scrollToSection('features')" data-label="Фичи"></div>
-        <div class="nav-dot" onclick="scrollToSection('rules')" data-label="Правила"></div>
-        <div class="nav-dot" onclick="scrollToSection('install')" data-label="Установка"></div>
-        <div class="nav-dot" onclick="scrollToSection('download')" data-label="Скачать"></div>
+        <div class="nav-track"></div>
+        <div class="nav-dot active" data-section="home" data-label="Главная"></div>
+        <div class="nav-dot" data-section="features" data-label="Особенности"></div>
+        <div class="nav-dot" data-section="rules" data-label="Правила"></div>
+        <div class="nav-dot" data-section="download" data-label="Скачать"></div>
+        <div class="nav-dot" data-section="install" data-label="Установка"></div>
     </nav>
 
     <main>
-        <section id="home">
+        <section id="home" class="reveal-on-scroll">
             <div class="badge" data-key="badge">RELEASE VERSION</div>
             <h1 class="hero-title">JUST RIG</h1>
             <p class="subtitle" data-key="hero_subtitle">
                 Простой и мощный Minecraft риг для Blender 4.2+.<br>
                 Создан для тех, кто ценит скорость и удобство настройки.
             </p>
-
             <div class="info-pills">
                 <div class="pill"><span data-key="pill_blender">Blender: </span>4.2+</div>
-                <div class="pill"><span data-key="pill_version">Последняя Версия: </span>Beta 1</div>
+                <div class="pill">
+                    <span data-key="pill_version">Версия: </span>
+                    <span id="latestVersion">Release 1</span>
+                </div>
             </div>
-
             <div class="rig-viewport">
-                <p style="color: #666;">[ Скриншот вашего рига ]</p>
+                <div class="vp-grid"></div>
+                <p style="color: var(--text-muted); z-index: 2;">Import Video/Image</p>
             </div>
         </section>
 
-        <section id="features">
-            <h2 class="hero-title">Отличительные особенности</h2>
-
+        <section id="features" class="reveal-on-scroll">
+            <h2 class="section-header" data-key="features_title">Отличительные особенности</h2>
             <div class="features-list">
                 <article class="feature-panel">
-                    <div class="feature-text">
-                        <h3 class="feature-title">Математический шейдер лица</h3>
-                        <p>
-                            Модульный и легко модифицируемый шейдер лица,
-                            построенный на математике
-                        </p>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-key="f1_t">Математический шейдер</h3>
+                        <p data-key="f1_p">Модульный шейдер лица, построенный на математике, что позволяет легко модифицировать шейдер</p>
                     </div>
-
                     <div class="feature-media">
-                        <img src="resources/install_extension.webp" alt="Face shader">
+                        <div class="media-placeholder">Shader Video/Image</div>
                     </div>
                 </article>
-
-                <article class="feature-panel">
-                    <div class="feature-text">
-                        <h3 class="feature-title">Мгновенный импорт рига</h3>
-                        <p>
-                            Опциональное расширение позволяет добавить Just Rig в сцену
-                            за пару кликов через удобный GUI без ручных действий.
-                        </p>
+                <article class="feature-panel reverse">
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-key="f2_t">Расширение (Аддон)</h3>
+                        <p data-key="f2_p">Расширение позволяет добавить Just Rig в сцену за пару кликов, а также все настройки находятся в одном месте</p>
                     </div>
-
                     <div class="feature-media">
-                        <video autoplay muted loop playsinline>
-                            <source src="media/import-demo.webm" type="video/webm">
-                        </video>
+                        <div class="media-placeholder">Import Video/Image</div>
+                    </div>
+                </article>
+                <article class="feature-panel">
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-key="f3_t">Поддержка Solid Mode</h3>
+                        <p data-key="f3_p">Лицо корректно отображается в Solid Mode (Workbench), что позволяет анимировать без лагов</p>
+                    </div>
+                    <div class="feature-media">
+                        <div class="media-placeholder">Import Video/Image</div>
                     </div>
                 </article>
             </div>
         </section>
 
-
-        <section id="rules">
-            <h2 class="hero-title" data-key="rules_title">Правила использования</h2>
+        <section id="rules" class="reveal-on-scroll">
+            <h2 class="section-header" data-key="rules_title">Правила использования</h2>
             <div class="rules-container">
                 <div class="rule-item">
-                    <span class="rule-icon">✔️</span>
+                    <div class="rule-check">✓</div>
                     <p data-key="r1">Свободное использование в любых анимациях.</p>
                 </div>
                 <div class="rule-item">
-                    <span class="rule-icon">✔️</span>
+                    <div class="rule-check">✓</div>
                     <p data-key="r2">Разрешено модифицировать риг под свои задачи.</p>
                 </div>
-                <div class="rule-item">
-                    <span class="rule-icon">ℹ️</span>
-                    <p data-key="r3">При использовании в анимациях необходимо указать автора рига (Aspirata). В артах можно не указывать, но всё ещё желательно</p>
+                <div class="rule-item warning">
+                    <div class="rule-check">!</div>
+                    <p data-key="r3">При публикации (YouTube, X и т.д.) укажите автора (Aspirata). Для артов — желательно.</p>
                 </div>
             </div>
-            
             <div class="social-links">
-                <a href="https://discord.gg/gpfgbkdJ97" class="btn btn-secondary">Discord</a>
-                <a href="https://www.youtube.com/@Aspirata1421" class="btn btn-secondary">YouTube</a>
-                <a href="https://x.com/Aspirata181256" class="btn btn-secondary">Twitter (X)</a>
+                <a href="https://discord.gg/gpfgbkdJ97" target="_blank" class="btn btn-secondary">Discord</a>
+                <a href="https://www.youtube.com/@Aspirata1421" target="_blank" class="btn btn-secondary">YouTube</a>
+                <a href="https://x.com/Aspirata181256" target="_blank" class="btn btn-secondary">X (Twitter)</a>
             </div>
         </section>
 
-        <section id="download">
-            <h2 class="hero-title" data-key="download_title">Готовы начать?</h2>
-            <div class="btn-group">
-                <a href="https://github.com/Aspirata/Just-Rig/releases/latest" class="btn btn-primary" data-key="btn_download">СКАЧАТЬ РИГ</a>
+        <section id="download" class="reveal-on-scroll">
+            <div class="cta-box">
+                <h2 class="section-header" data-key="download_title">Готовы начать?</h2>
+                <p class="subtitle" style="margin-top: -40px; margin-bottom: 40px;" data-key="download_sub">Нажмите кнопку ниже, чтобы скачать архив.</p>
+                <div class="btn-group">
+                    <a href="https://github.com/Aspirata/Just-Rig/releases/latest" target="_blank" class="btn btn-primary btn-lg" id="downloadBtn" data-key="btn_download">СКАЧАТЬ JUST RIG</a>
+                </div>
             </div>
         </section>
-
-        <section id="install">
-            <h2 class="hero-title" data-key="install_title">Простая установка</h2>
-            <div class="install-steps">
-                <div class="step-item">
-                    <div class="step-num">01</div>
-                    <div data-key="step1">Скачайте <b>just_rig.zip</b>.</div>
+        
+        <section id="install" class="reveal-on-scroll">
+            <h2 class="section-header" data-key="install_title">Установка</h2>
+            <div class="install-carousel-container">
+                <div class="install-track" id="installTrack">
+                    <div class="install-step">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 01</span>
+                            <h3 data-key="step1_title">Загрузка файла</h3>
+                        </div>
+                        <div class="step-media">
+                            <div class="media-placeholder">VIDEO: Downloading .zip</div>
+                        </div>
+                        <p class="step-desc" data-key="step1_desc">Скачайте <b>just_rig.zip</b>. Не распаковывайте его.</p>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 02</span>
+                            <h3 data-key="step2_title">Drag & Drop</h3>
+                        </div>
+                        <div class="step-media">
+                            <div class="media-placeholder">VIDEO: Dragging into Blender</div>
+                        </div>
+                        <p class="step-desc" data-key="step2_desc">Откройте Blender 4.2+ и перетащите файл в 3D вьюпорт.</p>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 03</span>
+                            <h3 data-key="step3_title">Добавление рига</h3>
+                        </div>
+                        <div class="step-media">
+                            <div class="media-placeholder">VIDEO: Shift+A Adding Rig</div>
+                        </div>
+                        <p class="step-desc" data-key="step3_desc">Нажмите <b>Shift + A</b> и выберите <b>Just Rig</b>.</p>
+                    </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">02</div>
-                    <div data-key="step2">Просто перетащите файл прямо в окно Blender 4.2+.</div>
+                <div class="carousel-controls">
+                    <button class="btn btn-secondary" id="prevStepBtn" disabled data-key="btn_prev">← Назад</button>
+                    <div class="step-indicators">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="btn btn-primary" id="nextStepBtn" data-key="btn_next">Далее →</button>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">03</div>
-                    <div data-key="step3">Нажмите <b>Shift + A</b> → <b>Just Rig</b>.</div>
-                </div>
+            </div>
+            <div class="site-credits">
+                <p data-key="credits_text">Создано Aspirata при участии Gemini 3 Pro. Хостинг на GitHub.</p>
             </div>
         </section>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>

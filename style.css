@@ -657,3 +657,179 @@ button:disabled {
         gap: 20px;
     }
 }
+
+/* ---------- AMBIENT BACKGROUND (Обновленная сетка) ---------- */
+.ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    /* Убираем perspective, чтобы сетка была плоской */
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    /* Создаем ровную сетку через градиенты */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px; /* Размер клетки, как в Blender */
+    background-position: center center;
+    
+    /* Маска, чтобы края уходили в темноту */
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    opacity: 0.6;
+    
+    /* Убираем анимацию движения и поворота */
+    transform: none;
+    animation: none;
+}
+
+/* ---------- LAYOUT (Уменьшенные отступы) ---------- */
+section {
+    /* Убираем 80vh, делаем высоту зависимой от контента */
+    min-height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Уменьшаем отступы со 100px до 70px */
+    padding: 70px 0; 
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Секция Home должна оставаться высокой для первого впечатления */
+#home {
+    min-height: 85vh;
+}
+
+/* ---------- RULES & SOCIAL (Обновленный дизайн правил) ---------- */
+.rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 30px;
+}
+
+.rule-column {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s;
+}
+
+.rule-column:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.rule-column-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.col-allowed .rule-column-header { color: #4ade80; /* Зеленый */ }
+.col-restricted .rule-column-header { color: #fbbf24; /* Желтый/Оранжевый */ }
+
+.rule-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.rule-check {
+    font-weight: bold;
+    min-width: 16px;
+}
+
+.col-allowed .rule-check { color: #4ade80; }
+.col-restricted .rule-check { color: #fbbf24; }
+
+/* Адаптив для правил на мобильных */
+@media (max-width: 768px) {
+    .rules-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 1. Define Brand Colors */
+:root {
+    /* ... ваши существующие переменные ... */
+    --color-discord: #5865F2;
+    --color-youtube: #FF0000;
+    --color-x: #ffffff; /* Белый для X на темном фоне */
+}
+
+/* 2. Update Base Button Style for Icons */
+.btn {
+    /* Убедимся, что иконка и текст выровнены и имеют отступ */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Расстояние между иконкой и текстом */
+    /* Остальные стили .btn остаются прежними */
+}
+
+/* 3. Icon Sizing */
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0; /* Чтобы иконка не сжималась */
+    transition: fill 0.3s ease; /* Плавное изменение цвета иконки */
+}
+
+/* 4. Brand Specific Hover Effects */
+
+/* Discord */
+.btn-discord .btn-icon { color: var(--color-discord); } /* Цвет иконки в покое */
+
+.btn-discord:hover {
+    background: var(--color-discord) !important; /* Используем !important, чтобы перебить стандартный ховер .btn-secondary */
+    border-color: var(--color-discord) !important;
+    color: #fff !important; /* Текст белым */
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4); /* Тень в цвет бренда */
+}
+.btn-discord:hover .btn-icon { color: #fff; } /* Иконка белой при наведении */
+
+
+/* YouTube */
+.btn-youtube .btn-icon { color: var(--color-youtube); }
+
+.btn-youtube:hover {
+    background: var(--color-youtube) !important;
+    border-color: var(--color-youtube) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+}
+.btn-youtube:hover .btn-icon { color: #fff; }
+
+
+/* X (Twitter) */
+.btn-x .btn-icon { color: var(--text-muted); } /* Иконка X пусть будет серой по умолчанию */
+
+.btn-x:hover {
+    background: rgba(255,255,255,0.1) !important; /* Для X сделаем просто посветлее фон */
+    border-color: var(--color-x) !important;
+    color: var(--color-x) !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+.btn-x:hover .btn-icon { color: var(--color-x); }

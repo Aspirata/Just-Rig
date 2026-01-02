@@ -35,7 +35,7 @@
 
     <main>
         <section id="home" class="reveal-on-scroll">
-            <div class="badge" data-key="badge">RELEASE VERSION</div>
+            <div class="badge" data-key="badge">RELEASE !</div>
             <h1 class="hero-title">JUST RIG</h1>
             <p class="subtitle" data-key="hero_subtitle">
                 Простой и мощный Minecraft риг для Blender 4.2+.<br>
@@ -44,7 +44,7 @@
             <div class="info-pills">
                 <div class="pill"><span data-key="pill_blender">Blender: </span>4.2+</div>
                 <div class="pill">
-                    <span data-key="pill_version">Версия: </span>
+                    <span data-key="pill_version">Последняя Версия: </span>
                     <span id="latestVersion">Release 1</span>
                 </div>
             </div>
@@ -84,29 +84,66 @@
                         <div class="media-placeholder">Import Video/Image</div>
                     </div>
                 </article>
+                <article class="feature-panel reverse">
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-key="f4_t">Современность и Простота</h3>
+                        <p data-key="f4_p">Риг сделан с учётом современных проблем, технологий и простоты</p>
+                    </div>
+                    <div class="feature-media">
+                        <div class="media-placeholder">Import Video/Image</div>
+                    </div>
+                </article>
             </div>
         </section>
 
         <section id="rules" class="reveal-on-scroll">
             <h2 class="section-header" data-key="rules_title">Правила использования</h2>
-            <div class="rules-container">
-                <div class="rule-item">
-                    <div class="rule-check">✓</div>
-                    <p data-key="r1">Свободное использование в любых анимациях.</p>
+            
+            <div class="rules-grid">
+                <div class="rule-column col-allowed">
+                    <div class="rule-column-header">
+                        <span data-key="rules_allowed">Разрешено</span>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-check">✓</div>
+                        <p data-key="r1">Свободное использование в любых анимациях.</p>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-check">✓</div>
+                        <p data-key="r2">Разрешено модифицировать риг под свои задачи.</p>
+                    </div>
                 </div>
-                <div class="rule-item">
-                    <div class="rule-check">✓</div>
-                    <p data-key="r2">Разрешено модифицировать риг под свои задачи.</p>
-                </div>
-                <div class="rule-item warning">
-                    <div class="rule-check">!</div>
-                    <p data-key="r3">При публикации (YouTube, X и т.д.) укажите автора (Aspirata). Для артов — желательно.</p>
+
+                <div class="rule-column col-restricted">
+                    <div class="rule-column-header">
+                        <span data-key="rules_restricted">Важно</span>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-check">!</div>
+                        <p data-key="r3">При публикации проектов с использованием рига укажите автора (Aspirata) и по желанию одну или несколько из указанных ниже ссыллок. Исключением являются арты, при использовании рига в арте указание автора необязательно.</p>
+                    </div>
                 </div>
             </div>
+
             <div class="social-links">
-                <a href="https://discord.gg/gpfgbkdJ97" target="_blank" class="btn btn-secondary">Discord</a>
-                <a href="https://www.youtube.com/@Aspirata1421" target="_blank" class="btn btn-secondary">YouTube</a>
-                <a href="https://x.com/Aspirata181256" target="_blank" class="btn btn-secondary">X (Twitter)</a>
+                <a href="https://discord.gg/gpfgbkdJ97" target="_blank" class="btn btn-secondary btn-discord">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.6853-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/>
+                    </svg>
+                    Discord Server
+                </a>
+                <a href="https://www.youtube.com/@Aspirata1421" target="_blank" class="btn btn-secondary btn-youtube">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    YouTube
+                </a>
+                <a href="https://x.com/Aspirata181256" target="_blank" class="btn btn-secondary btn-x">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    X (Twitter)
+                </a>
             </div>
         </section>
 

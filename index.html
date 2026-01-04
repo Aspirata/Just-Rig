@@ -86,8 +86,8 @@
                 </article>
                 <article class="feature-panel reverse">
                     <div class="feature-content">
-                        <h3 class="feature-title" data-key="f4_t">Современность и Простота</h3>
-                        <p data-key="f4_p">Риг сделан с учётом современных проблем, технологий и простоты</p>
+                        <h3 class="feature-title" data-key="f5_t">Оптимизация</h3>
+                        <p data-key="f5_p">Риг выдаёт на Ryzen 7 5700x 150-165 fps в Solid Mode и 85-100 fps в Shading Mode. На i5 12400F 110-125 fps в Solid Mode и 55-75 fps в Shading Mode.</p>
                     </div>
                     <div class="feature-media">
                         <div class="media-placeholder">Import Video/Image</div>
@@ -113,11 +113,11 @@
                     </div>
                     <div class="rule-item">
                         <div class="rule-check">✓</div>
-                        <p data-key="r1">Свободное использование в любых анимациях.</p>
+                        <p data-key="r1">Свободное использование в любых анимациях (в том числе коммерческих).</p>
                     </div>
                     <div class="rule-item">
                         <div class="rule-check">✓</div>
-                        <p data-key="r2">Разрешено модифицировать риг под свои задачи.</p>
+                        <p data-key="r2">Разрешено модифицировать и форкать риг под свои задачи.</p>
                     </div>
                 </div>
                 <div class="rule-column col-restricted">
@@ -126,7 +126,7 @@
                     </div>
                     <div class="rule-item">
                         <div class="rule-check">!</div>
-                        <p data-key="r3">При публикации проектов с использованием рига укажите автора (Aspirata) и по желанию одну или несколько из указанных ниже ссыллок. Исключением являются арты, при использовании рига в арте указание автора необязательно.</p>
+                        <p data-key="r3">При публикации проектов с использованием рига (анимаций, форков рига) укажите автора (Aspirata) и по желанию одну или несколько из указанных ниже ссыллок. Исключением являются арты, при использовании рига в арте указание автора необязательно.</p>
                     </div>
                 </div>
             </div>
@@ -155,10 +155,10 @@
 
         <section id="download" class="reveal-on-scroll">
             <div class="cta-box">
-                <h2 class="section-header" data-key="download_title">Готовы начать?</h2>
-                <p class="subtitle" style="margin-top: -40px; margin-bottom: 40px;" data-key="download_sub">Нажмите кнопку ниже, чтобы скачать архив.</p>
+                <h2 class="section-header" data-key="download_title">Готовы начать ?</h2>
+                <p class="subtitle" style="margin-top: -40px; margin-bottom: 40px;" data-key="download_sub">Нажмите кнопку ниже, чтобы скачать архив с ригом и расширением.</p>
                 <div class="btn-group">
-                    <a href="https://github.com/Aspirata/Just-Rig/releases/latest" target="_blank" class="btn btn-primary btn-lg" id="downloadBtn" data-key="btn_download">СКАЧАТЬ JUST RIG</a>
+                    <a href="https://github.com/Aspirata/Just-Rig/releases/download/beta_1/just_rig.zip" target="_blank" class="btn btn-primary btn-lg" id="downloadBtn" data-key="btn_download">СКАЧАТЬ JUST RIG</a>
                 </div>
             </div>
         </section>
@@ -170,22 +170,19 @@
                     <div class="install-step">
                         <div class="step-header">
                             <span class="step-badge">STEP 01</span>
-                            <h3 data-key="step1_title">Загрузка файла</h3>
-                        </div>
-                        <div class="step-media">
-                            <div class="media-placeholder">VIDEO: Downloading .zip</div>
-                        </div>
-                        <p class="step-desc" data-key="step1_desc">Скачайте <b>just_rig.zip</b>. Не распаковывайте его.</p>
-                    </div>
-                    <div class="install-step">
-                        <div class="step-header">
-                            <span class="step-badge">STEP 02</span>
                             <h3 data-key="step2_title">Drag & Drop</h3>
                         </div>
                         <div class="step-media">
-                            <div class="media-placeholder">VIDEO: Dragging into Blender</div>
+                            <video
+                                class="step-video"
+                                src="resources/install_extension.webm"
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                            ></video>
                         </div>
-                        <p class="step-desc" data-key="step2_desc">Откройте Blender 4.2+ и перетащите файл в 3D вьюпорт.</p>
+                        <p class="step-desc" data-key="step2_desc">Откройте Blender 4.2+ и перетащите файл в 3D вьюпорт</p>
                     </div>
                     <div class="install-step">
                         <div class="step-header">
@@ -193,9 +190,26 @@
                             <h3 data-key="step3_title">Добавление рига</h3>
                         </div>
                         <div class="step-media">
-                            <div class="media-placeholder">VIDEO: Shift+A Adding Rig</div>
+                            <video
+                                class="step-video"
+                                src="resources/add_rig.webm"
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                            ></video>
                         </div>
-                        <p class="step-desc" data-key="step3_desc">Нажмите <b>Shift + A</b> и выберите <b>Just Rig</b>.</p>
+                        <p class="step-desc" data-key="step3_desc">Нажмите <b>Shift + A</b> и выберите <b>Just Rig</b></p>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 03</span>
+                            <h3 data-key="step1_title">Готово!</h3>
+                        </div>
+                        <div class="step-media">
+                            <div class="media-placeholder">👍</div>
+                        </div>
+                        <p class="step-desc" data-key="step1_desc">Всё готово, что тут ещё можно сказать ?</p>
                     </div>
                 </div>
                 <div class="carousel-controls">
@@ -209,7 +223,7 @@
                 </div>
             </div>
             <div class="site-credits">
-                <p data-key="credits_text">Создано Aspirata при участии Gemini 3 Pro. Хостинг на GitHub.</p>
+                <p data-key="credits_text">Создано Aspirata при большом участии Gemini 3 Pro. Хостинг на GitHub.</p>
             </div>
         </section>
     </main>

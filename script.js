@@ -61,12 +61,18 @@ document.querySelectorAll('.nav-dot').forEach(dot => {
     });
 });
 
-const downloadBtn = document.getElementById('downloadBtn');
-if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
-        setTimeout(() => scrollToId('install'), 1000);
-    });
-}
+document.getElementById('downloadBtn').addEventListener('click', function(e) {
+    const installSection = document.getElementById('install');
+    
+    if (installSection) {
+        setTimeout(() => {
+            installSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }, 500);
+    }
+});
 
 const prevBtn = document.getElementById('prevStepBtn');
 const nextBtn = document.getElementById('nextStepBtn');
@@ -133,20 +139,28 @@ function updateSliderUI() {
     track.style.transform = `translateX(-${currentStep * 100}%)`;
     steps.forEach((step, index) => step.classList.toggle('active-step', index === currentStep));
     dots.forEach((dot, index) => dot.classList.toggle('active', index === currentStep));
-
-    if (prevBtn) prevBtn.disabled = (currentStep === 0);
     
     const langSwitch = document.getElementById('langSwitch');
     const isEn = langSwitch && langSwitch.classList.contains('en-mode');
     const isLast = (currentStep === totalSteps - 1);
+    const isFirst = (currentStep === 0);
+
+    if (prevBtn) {
+        prevBtn.disabled = isFirst;
+        if (isLast) {
+            prevBtn.classList.replace('btn-secondary', 'btn-primary');
+        } else {
+            prevBtn.classList.replace('btn-primary', 'btn-secondary');
+        }
+    }
 
     if (nextBtn) {
         if (isLast) {
-            nextBtn.innerHTML = isEn ? translations.en.btn_finish : (translations.ru.btn_finish || "Готово!");
-            nextBtn.style.background = 'var(--accent-primary)'; 
+            nextBtn.disabled = true; 
+            nextBtn.classList.replace('btn-primary', 'btn-secondary');
         } else {
-            nextBtn.innerHTML = isEn ? translations.en.btn_next : (translations.ru.btn_next || "Далее →");
-            nextBtn.style.background = '';
+            nextBtn.disabled = false;
+            nextBtn.classList.replace('btn-secondary', 'btn-primary');
         }
     }
 }

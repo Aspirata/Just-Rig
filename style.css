@@ -1,22 +1,40 @@
-/* ---------- VARIABLES ---------- */
+/* =========================================
+   1. VARIABLES & CONFIGURATION
+   ========================================= */
 :root {
+    /* Colors: Backgrounds */
     --bg-deep: #121214;       
     --bg-surface: rgba(24, 24, 27, 0.65);
     --bg-card: rgba(255, 255, 255, 0.03); 
+    
+    /* Colors: Accents & Text */
     --accent-primary: #3b82f6; 
     --accent-glow: rgba(59, 130, 246, 0.4); 
     --text-main: #f4f4f5;
     --text-muted: #a1a1aa;
+    
+    /* Colors: Borders */
     --border-light: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(255, 255, 255, 0.2);
+    
+    /* Colors: Brands */
+    --color-discord: #5865F2;
+    --color-youtube: #FF0000;
+    --color-x: #ffffff;
+    
+    /* Dimensions */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-pill: 6px;
+    
+    /* Fonts */
     --font-main: 'Outfit', sans-serif; 
 }
 
-/* ---------- RESET & BASE ---------- */
+/* =========================================
+   2. RESET & BASE STYLES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -36,19 +54,53 @@ body {
     overflow-x: hidden;
 }
 
+/* =========================================
+   3. ANIMATIONS
+   ========================================= */
 @keyframes bgBreathing {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
 
-/* ---------- AMBIENT BACKGROUND ---------- */
+@keyframes float {
+    from { transform: translate(0, 0); }
+    to { transform: translate(0, -50px); }
+}
+
+/* =========================================
+   4. LAYOUT & GRID
+   ========================================= */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    min-height: auto; /* Контент определяет высоту */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 70px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+section:last-of-type { border-bottom: none; }
+
+/* Особый стиль для первой секции */
+#home { min-height: 85vh; }
+
+/* =========================================
+   5. AMBIENT BACKGROUND
+   ========================================= */
 .ambient-bg {
     position: fixed;
     inset: 0;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
-    perspective: 1000px;
 }
 
 .cube-blur {
@@ -67,31 +119,63 @@ body {
 
 .grid-overlay {
     position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    transform: rotateX(60deg);
-    opacity: 0.5;
-    mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-    animation: gridMove 20s linear infinite;
+    inset: 0;
+    /* Плоская сетка Blender-style */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    opacity: 0.6;
 }
 
-@keyframes gridMove {
-    from { transform: rotateX(60deg) translateY(0); }
-    to { transform: rotateX(60deg) translateY(50px); }
+/* =========================================
+   6. TYPOGRAPHY
+   ========================================= */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
-@keyframes float {
-    from { transform: translate(0, 0); }
-    to { transform: translate(0, -50px); }
+.section-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #fff;
+    position: relative;
 }
 
-/* ---------- LANGUAGE SWITCHER ---------- */
+/* Уменьшенный отступ для заголовка в правилах */
+#rules .section-header { margin-bottom: 0.5rem; }
+
+.section-header::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--accent-primary);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 32px;
+}
+
+/* =========================================
+   7. NAVIGATION COMPONENTS
+   ========================================= */
+
+/* Language Switcher */
 .lang-switch-container {
     position: fixed;
     top: 24px;
@@ -144,7 +228,7 @@ body {
 .lang-switch:not(.en-mode) .lang-btn[data-lang="ru"],
 .lang-switch.en-mode .lang-btn[data-lang="en"] { color: #fff; }
 
-/* ---------- RIGHT NAVIGATION ---------- */
+/* Right Navigation Dots */
 .nav-right {
     position: fixed;
     right: 30px;
@@ -206,63 +290,9 @@ body {
     transform: translateY(-50%) translateX(0);
 }
 
-/* ---------- LAYOUT ---------- */
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-
-section {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 100px 0;
-    border-bottom: 1px solid var(--border-light);
-}
-
-section:last-of-type { border-bottom: none; }
-
-/* ---------- TYPOGRAPHY ---------- */
-.hero-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    letter-spacing: -1px;
-    color: #fff;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-
-.section-header {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 60px;
-    color: #fff;
-    position: relative;
-}
-
-.section-header::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 4px;
-    background: var(--accent-primary);
-    margin: 15px auto 0;
-    border-radius: 2px;
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 32px;
-}
-
-/* ---------- UI ELEMENTS ---------- */
+/* =========================================
+   8. UI ELEMENTS & BUTTONS
+   ========================================= */
 .badge {
     display: inline-block;
     margin-bottom: 24px;
@@ -299,7 +329,99 @@ section:last-of-type { border-bottom: none; }
     font-weight: 600;
 }
 
-/* ---------- RIG VIEWPORT ---------- */
+/* Base Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent; 
+    gap: 10px;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: fill 0.3s ease;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Button Variants */
+.btn-primary {
+    background: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: rgba(255,255,255,0.08);
+}
+
+.btn-lg {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Brand Specific Buttons */
+
+/* Discord */
+.btn-discord .btn-icon { color: var(--color-discord); }
+.btn-discord:hover {
+    background: var(--color-discord) !important;
+    border-color: var(--color-discord) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+}
+.btn-discord:hover .btn-icon { color: #fff; }
+
+/* YouTube */
+.btn-youtube .btn-icon { color: var(--color-youtube); }
+.btn-youtube:hover {
+    background: var(--color-youtube) !important;
+    border-color: var(--color-youtube) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+}
+.btn-youtube:hover .btn-icon { color: #fff; }
+
+/* X (Twitter) */
+.btn-x .btn-icon { color: var(--text-muted); }
+.btn-x:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: var(--color-x) !important;
+    color: var(--color-x) !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+.btn-x:hover .btn-icon { color: var(--color-x); }
+
+/* =========================================
+   9. FEATURE SECTIONS
+   ========================================= */
 .rig-viewport {
     width: 100%;
     max-width: 800px;
@@ -325,7 +447,6 @@ section:last-of-type { border-bottom: none; }
     opacity: 0.15;
 }
 
-/* ---------- FEATURES ---------- */
 .features-list {
     display: flex;
     flex-direction: column;
@@ -391,40 +512,83 @@ section:last-of-type { border-bottom: none; }
     object-fit: cover;
 }
 
-/* ---------- RULES & SOCIAL ---------- */
-.rules-container {
+/* =========================================
+   10. RULES & LICENSE
+   ========================================= */
+.license-info {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.license-link {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+}
+
+.license-link:hover { opacity: 0.7; }
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 30px;
+}
+
+.rule-column {
     background: var(--bg-surface);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
-    padding: 30px;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 30px;
+    padding: 24px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s;
 }
+
+.rule-column:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.rule-column-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.col-allowed .rule-column-header { color: #4ade80; }
+.col-restricted .rule-column-header { color: #fbbf24; }
 
 .rule-item {
     display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.rule-item:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-    padding-bottom: 0;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--text-muted);
 }
 
 .rule-check {
-    color: var(--accent-primary);
     font-weight: bold;
-    min-width: 20px;
+    min-width: 16px;
 }
 
-.warning .rule-check { color: #fbbf24; }
+.col-allowed .rule-check { color: #4ade80; }
+.col-restricted .rule-check { color: #fbbf24; }
 
 .social-links {
     display: flex;
@@ -433,13 +597,14 @@ section:last-of-type { border-bottom: none; }
     justify-content: center;
 }
 
-/* ---------- DOWNLOAD SECTION ---------- */
+/* =========================================
+   11. DOWNLOAD & INSTALL CAROUSEL
+   ========================================= */
 #download .cta-box {
     max-width: 700px;
     padding: 0 20px;
 }
 
-/* ---------- INSTALLATION CAROUSEL ---------- */
 .install-carousel-container {
     width: 100%;
     max-width: 800px;
@@ -451,7 +616,7 @@ section:last-of-type { border-bottom: none; }
 .install-track {
     display: flex;
     width: 100%;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .install-step {
@@ -552,56 +717,9 @@ section:last-of-type { border-bottom: none; }
     box-shadow: 0 0 8px var(--accent-glow);
 }
 
-/* ---------- BUTTONS ---------- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 1px solid transparent; 
-}
-
-.btn-primary {
-    background: var(--accent-primary);
-    color: #fff;
-    box-shadow: 0 4px 20px var(--accent-glow);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px var(--accent-glow);
-}
-
-.btn-lg {
-    padding: 16px 40px;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-}
-
-.btn-secondary {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border-light);
-    color: var(--text-muted);
-}
-
-.btn-secondary:hover {
-    border-color: var(--text-main);
-    color: var(--text-main);
-    background: rgba(255,255,255,0.08);
-}
-
-button:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* ---------- CREDITS ---------- */
+/* =========================================
+   12. FOOTER & UTILS
+   ========================================= */
 .site-credits {
     margin-top: auto; 
     padding: 80px 0 30px;
@@ -624,7 +742,7 @@ button:disabled {
 
 #latestVersion { color: var(--text-muted); }
 
-/* ---------- SCROLL REVEAL ---------- */
+/* Scroll Reveal Utility */
 .reveal-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -636,7 +754,9 @@ button:disabled {
     transform: translateY(0);
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* =========================================
+   13. RESPONSIVE QUERIES
+   ========================================= */
 @media (max-width: 900px) {
     .feature-panel, .feature-panel.reverse {
         flex-direction: column;
@@ -648,6 +768,10 @@ button:disabled {
     .hero-title { font-size: 2.8rem; }
 }
 
+@media (max-width: 768px) {
+    .rules-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 480px) {
     main { padding: 0 16px; }
     .install-step h3 { font-size: 1.5rem; }
@@ -657,179 +781,3 @@ button:disabled {
         gap: 20px;
     }
 }
-
-/* ---------- AMBIENT BACKGROUND (Обновленная сетка) ---------- */
-.ambient-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-    /* Убираем perspective, чтобы сетка была плоской */
-}
-
-.grid-overlay {
-    position: absolute;
-    inset: 0;
-    /* Создаем ровную сетку через градиенты */
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px; /* Размер клетки, как в Blender */
-    background-position: center center;
-    
-    /* Маска, чтобы края уходили в темноту */
-    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-    opacity: 0.6;
-    
-    /* Убираем анимацию движения и поворота */
-    transform: none;
-    animation: none;
-}
-
-/* ---------- LAYOUT (Уменьшенные отступы) ---------- */
-section {
-    /* Убираем 80vh, делаем высоту зависимой от контента */
-    min-height: auto; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Уменьшаем отступы со 100px до 70px */
-    padding: 70px 0; 
-    border-bottom: 1px solid var(--border-light);
-}
-
-/* Секция Home должна оставаться высокой для первого впечатления */
-#home {
-    min-height: 85vh;
-}
-
-/* ---------- RULES & SOCIAL (Обновленный дизайн правил) ---------- */
-.rules-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 30px;
-}
-
-.rule-column {
-    background: var(--bg-surface);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: transform 0.3s;
-}
-
-.rule-column:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-}
-
-.rule-column-header {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.col-allowed .rule-column-header { color: #4ade80; /* Зеленый */ }
-.col-restricted .rule-column-header { color: #fbbf24; /* Желтый/Оранжевый */ }
-
-.rule-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-
-.rule-check {
-    font-weight: bold;
-    min-width: 16px;
-}
-
-.col-allowed .rule-check { color: #4ade80; }
-.col-restricted .rule-check { color: #fbbf24; }
-
-/* Адаптив для правил на мобильных */
-@media (max-width: 768px) {
-    .rules-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* 1. Define Brand Colors */
-:root {
-    /* ... ваши существующие переменные ... */
-    --color-discord: #5865F2;
-    --color-youtube: #FF0000;
-    --color-x: #ffffff; /* Белый для X на темном фоне */
-}
-
-/* 2. Update Base Button Style for Icons */
-.btn {
-    /* Убедимся, что иконка и текст выровнены и имеют отступ */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Расстояние между иконкой и текстом */
-    /* Остальные стили .btn остаются прежними */
-}
-
-/* 3. Icon Sizing */
-.btn-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0; /* Чтобы иконка не сжималась */
-    transition: fill 0.3s ease; /* Плавное изменение цвета иконки */
-}
-
-/* 4. Brand Specific Hover Effects */
-
-/* Discord */
-.btn-discord .btn-icon { color: var(--color-discord); } /* Цвет иконки в покое */
-
-.btn-discord:hover {
-    background: var(--color-discord) !important; /* Используем !important, чтобы перебить стандартный ховер .btn-secondary */
-    border-color: var(--color-discord) !important;
-    color: #fff !important; /* Текст белым */
-    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4); /* Тень в цвет бренда */
-}
-.btn-discord:hover .btn-icon { color: #fff; } /* Иконка белой при наведении */
-
-
-/* YouTube */
-.btn-youtube .btn-icon { color: var(--color-youtube); }
-
-.btn-youtube:hover {
-    background: var(--color-youtube) !important;
-    border-color: var(--color-youtube) !important;
-    color: #fff !important;
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
-}
-.btn-youtube:hover .btn-icon { color: #fff; }
-
-
-/* X (Twitter) */
-.btn-x .btn-icon { color: var(--text-muted); } /* Иконка X пусть будет серой по умолчанию */
-
-.btn-x:hover {
-    background: rgba(255,255,255,0.1) !important; /* Для X сделаем просто посветлее фон */
-    border-color: var(--color-x) !important;
-    color: var(--color-x) !important;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-}
-.btn-x:hover .btn-icon { color: var(--color-x); }

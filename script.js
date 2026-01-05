@@ -107,7 +107,7 @@ const observer = new IntersectionObserver((entries, obs) => {
             obs.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1, rootMargin: "0px 0px -25% 0px" });
+}, { threshold: 0.1, rootMargin: "0px 0px -10% 0px" });
 
 document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 

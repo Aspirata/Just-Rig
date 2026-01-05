@@ -329,6 +329,16 @@ section:last-of-type { border-bottom: none; }
     font-weight: 600;
 }
 
+.rig-preview {
+    width: 400px;
+    height: 225px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin-top: 40px;
+}
+
 /* Base Button */
 .btn {
     display: inline-flex;

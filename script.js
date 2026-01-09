@@ -137,7 +137,19 @@ function updateSliderUI() {
     if (!track) return;
 
     track.style.transform = `translateX(-${currentStep * 100}%)`;
-    steps.forEach((step, index) => step.classList.toggle('active-step', index === currentStep));
+    steps.forEach((step, index) => {
+        const isActive = index === currentStep;
+        step.classList.toggle('active-step', isActive);
+        const video = step.querySelector('video');
+            if (video) {
+                if (isActive) {
+                    video.currentTime = 0;
+                    video.play();
+                } else {
+                    video.pause();
+                }
+        }
+    });
     dots.forEach((dot, index) => dot.classList.toggle('active', index === currentStep));
     
     const langSwitch = document.getElementById('langSwitch');

@@ -91,13 +91,13 @@ updateSliderUI();
 
 const versionEl = document.getElementById('latestVersion');
 if (versionEl) {
-    fetch(`https://api.github.com/repos/Aspirata/Just-Rig/releases/latest`)
+    fetch('https://api.github.com/repos/Aspirata/Just-Rig/releases/latest')
         .then(res => {
             if (!res.ok) throw new Error('Release not found');
             return res.json();
         })
-        .then(data => versionEl.textContent = data.tag_name)
-        .catch(() => versionEl.textContent = "Beta 1");
+        .then(data => versionEl.textContent = data.name)
+        .catch(() => versionEl.textContent = "Release not found");
 }
 
 const observer = new IntersectionObserver((entries, obs) => {

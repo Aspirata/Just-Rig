@@ -6,8 +6,9 @@
     <title>Just Rig</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="lang-switch-container">
@@ -36,27 +37,16 @@
     <main>
         <section id="home" class="reveal-on-scroll">
             <div class="badge" data-key="badge">RELEASE !</div>
-            <h1 class="hero-title">JUST RIG</h1>
-            <p class="subtitle" data-key="hero_subtitle">
-                Простой и мощный Minecraft риг для Blender 4.2+.<br>
-                Создан для тех, кто ценит скорость и удобство настройки.
-            </p>
+            <h1 class="hero-title" data-key="hero_title">JUST SIMPLE RIG</h1>
+            <p class="subtitle" data-key="hero_subtitle">Простой и современный Minecraft Simple Rig для Blender 4.2+</p>
             <div class="info-pills">
-                <div class="pill"><span data-key="pill_blender">Blender: </span>4.2+</div>
                 <div class="pill">
                     <span data-key="pill_version">Последняя Версия: </span>
                     <span id="latestVersion">Release 1</span>
                 </div>
             </div>
             <div class="step-media">
-                <video
-                    class="step-video"
-                    src="resources/spinning_rig_combined.webm"
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                ></video>
+                <video src="resources/spinning_rig_combined.webm" autoplay loop muted playsinline></video>
             </div>
         </section>
 
@@ -66,94 +56,74 @@
                 <article class="feature-panel">
                     <div class="feature-content">
                         <h3 class="feature-title" data-key="f1_t">Математический шейдер</h3>
-                        <p data-key="f1_p">Модульный шейдер лица, построенный на математике, что позволяет легко модифицировать шейдер</p>
+                        <p data-key="f1_p">Модульный шейдер лица, построенный на математике, что позволяет легко модифицировать шейдер.</p>
                     </div>
-                    <div class="feature-media">
-                        <div class="media-placeholder">Shader Video/Image</div>
-                    </div>
+                    <div class="feature-media"><div class="media-placeholder">Shader Video/Image</div></div>
                 </article>
                 <article class="feature-panel reverse">
                     <div class="feature-content">
                         <h3 class="feature-title" data-key="f2_t">Расширение (Аддон)</h3>
-                        <p data-key="f2_p">Расширение позволяет добавить Just Rig в сцену за пару кликов, а также все настройки находятся в одном месте</p>
+                        <p data-key="f2_p">Расширение позволяет добавить Just Rig в сцену за пару кликов, а также все настройки находятся в одном месте.</p>
                     </div>
-                    <div class="feature-media">
-                        <div class="media-placeholder">Import Video/Image</div>
-                    </div>
+                    <div class="feature-media"><div class="media-placeholder">Import Video/Image</div></div>
                 </article>
                 <article class="feature-panel">
                     <div class="feature-content">
                         <h3 class="feature-title" data-key="f3_t">Поддержка Solid Mode</h3>
-                        <p data-key="f3_p">Лицо корректно отображается в Solid Mode (Workbench), что позволяет анимировать без лагов без большой потери в удобстве</p>
+                        <p data-key="f3_p">Лицо корректно отображается в Solid Mode (Workbench), что позволяет анимировать без лагов без большой потери в удобстве.</p>
                     </div>
-                    <div class="feature-media">
-                        <div class="media-placeholder">Import Video/Image</div>
-                    </div>
+                    <div class="feature-media"><div class="media-placeholder">Import Video/Image</div></div>
                 </article>
                 <article class="feature-panel reverse">
                     <div class="feature-content">
                         <h3 class="feature-title" data-key="f5_t">Оптимизация</h3>
-                        <p data-key="f5_p">Риг выдаёт на Ryzen 7 5700x 150-165 fps в Solid Mode и 85-100 fps в Shading Mode. На i5 12400F 110-125 fps в Solid Mode и 55-75 fps в Shading Mode.</p>
+                        <p data-key="f5_p">На r7 5700x 150-165 fps в Solid Mode и 85-100 fps в Shading Mode <br>На i5 12400F 110-125 fps в Solid Mode и 55-75 fps в Shading Mode.</p>
                     </div>
-                    <div class="feature-media">
-                        <div class="media-placeholder">Import Video/Image</div>
-                    </div>
+                    <div class="feature-media"><div class="media-placeholder">Import Video/Image</div></div>
                 </article>
             </div>
         </section>
 
         <section id="rules" class="reveal-on-scroll">
             <h2 class="section-header" data-key="rules_title">Правила использования</h2>
-
             <div class="license-info">
                 <p class="license-text" data-key="license_description">
-                    Риг находится под лицензией 
-                    <a href="https://github.com/Aspirata/Just-Rig/blob/Beta/LICENSE" target="_blank" class="license-link">CC BY</a>
+                    Риг находится под лицензией <a href="https://github.com/Aspirata/Just-Rig/blob/Beta/LICENSE" target="_blank" class="license-link">CC BY</a>
                 </p>
             </div>
             
             <div class="rules-grid">
                 <div class="rule-column col-allowed">
-                    <div class="rule-column-header">
-                        <span data-key="rules_allowed">Разрешено</span>
+                    <div class="rule-column-header"><span data-key="rules_allowed">Разрешено</span></div>
+                    <div class="rule-item">
+                        <div class="rule-check">✓</div>
+                        <p data-key="r1">Свободное использование в любых анимациях (в том числе коммерческих)</p>
                     </div>
                     <div class="rule-item">
                         <div class="rule-check">✓</div>
-                        <p data-key="r1">Свободное использование в любых анимациях (в том числе коммерческих).</p>
-                    </div>
-                    <div class="rule-item">
-                        <div class="rule-check">✓</div>
-                        <p data-key="r2">Разрешено модифицировать и форкать риг под свои задачи.</p>
+                        <p data-key="r2">Разрешено публиковать модифицировать риг</p>
                     </div>
                 </div>
                 <div class="rule-column col-restricted">
-                    <div class="rule-column-header">
-                        <span data-key="rules_restricted">Важно</span>
-                    </div>
+                    <div class="rule-column-header"><span data-key="rules_restricted">Важно</span></div>
                     <div class="rule-item">
                         <div class="rule-check">!</div>
-                        <p data-key="r3">При публикации проектов с использованием рига (анимаций, форков рига) укажите автора (Aspirata) и по желанию одну или несколько из указанных ниже ссыллок. Исключением являются арты, при использовании рига в арте указание автора необязательно.</p>
+                        <p data-key="r3">При публикации проектов с использованием рига (анимации, форки) укажите автора — Aspirata и при желании одну или несколько ссылок ниже <br>Для артов указание автора необязательно</p>
                     </div>
                 </div>
             </div>
 
             <div class="social-links">
                 <a href="https://discord.gg/gpfgbkdJ97" target="_blank" class="btn btn-secondary btn-discord">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.6853-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.6853-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/></svg>
                     Discord Server
                 </a>
                 <a href="https://www.youtube.com/@Aspirata1421" target="_blank" class="btn btn-secondary btn-youtube">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     YouTube
                 </a>
                 <a href="https://x.com/Aspirata181256" target="_blank" class="btn btn-secondary btn-x">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     X (Twitter)
                 </a>
             </div>
@@ -173,49 +143,35 @@
             <h2 class="section-header" data-key="install_title">Установка</h2>
             <div class="install-carousel-container">
                 <div class="install-track" id="installTrack">
-                    <div class="install-step">
+                    <div class="install-step active-step">
                         <div class="step-header">
                             <span class="step-badge">STEP 01</span>
-                            <h3 data-key="step2_title">Drag & Drop</h3>
+                            <h3 data-key="install_step1_title">Drag & Drop</h3>
                         </div>
                         <div class="step-media">
-                            <video
-                                class="step-video"
-                                src="resources/install_extension.webm"
-                                autoplay
-                                loop
-                                muted
-                                playsinline
-                            ></video>
+                            <video src="resources/install_extension.webm" autoplay loop muted playsinline></video>
                         </div>
-                        <p class="step-desc" data-key="step2_desc">Откройте Blender 4.2+ и перетащите файл в 3D вьюпорт</p>
+                        <p class="step-desc" data-key="install_step1_desc">Откройте Blender 4.2+ и перетащите файл в 3D вьюпорт.</p>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 02</span>
+                            <h3 data-key="install_step2_title">Добавление рига</h3>
+                        </div>
+                        <div class="step-media">
+                            <video src="resources/add_rig.webm" loop muted playsinline></video>
+                        </div>
+                        <p class="step-desc" data-key="install_step2_desc">Нажмите <b>Shift + A</b> и выберите <b>Just Rig</b>.</p>
                     </div>
                     <div class="install-step">
                         <div class="step-header">
                             <span class="step-badge">STEP 03</span>
-                            <h3 data-key="step3_title">Добавление рига</h3>
-                        </div>
-                        <div class="step-media">
-                            <video
-                                class="step-video"
-                                src="resources/add_rig.webm"
-                                autoplay
-                                loop
-                                muted
-                                playsinline
-                            ></video>
-                        </div>
-                        <p class="step-desc" data-key="step3_desc">Нажмите <b>Shift + A</b> и выберите <b>Just Rig</b></p>
-                    </div>
-                    <div class="install-step">
-                        <div class="step-header">
-                            <span class="step-badge">STEP 03</span>
-                            <h3 data-key="step1_title">Готово!</h3>
+                            <h3 data-key="install_step3_title">Готово!</h3>
                         </div>
                         <div class="step-media">
                             <div class="media-placeholder">👍</div>
                         </div>
-                        <p class="step-desc" data-key="step1_desc">Всё готово, что тут ещё можно сказать ?</p>
+                        <p class="step-desc" data-key="install_step3_desc">Всё готово, что тут ещё можно сказать ?</p>
                     </div>
                 </div>
                 <div class="carousel-controls">
@@ -229,10 +185,12 @@
                 </div>
             </div>
             <div class="site-credits">
-                <p data-key="credits_text">Создано Aspirata при большом участии Gemini 3 Pro. Хостинг на GitHub.</p>
+                <p data-key="credits_text">
+                    Создано Aspirata при большом участии Gemini 3 Pro <br> 
+                    <a href="https://github.com/Aspirata/Just-Rig/tree/Website" target="_blank" class="license-link">Хостинг на GitHub</a>
+                </p>
             </div>
         </section>
     </main>
-    <script src="script.js"></script>
 </body>
 </html>

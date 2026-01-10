@@ -1,221 +1,249 @@
 const translations = {
     en: {
-        badge: "RELEASE VERSION",
-        hero_subtitle: "Simple and powerful Minecraft rig for Blender 4.2+.<br>Built for those who value speed and ease of setup.",
-        pill_blender: "Blender:",
-        pill_version: "Version:",
-        features_title: "Key Features",
-        f1_t: "Math-Based Face Shader",
-        f1_p: "Modular and easily modifiable face shader built entirely on math nodes.",
-        f2_t: "Instant Rig Import",
-        f2_p: "Optional extension allows you to add Just Rig to your scene in two clicks.",
+        // Navigation
+        nav_home: "Home",
+        nav_features: "Features",
+        nav_rules: "Rules",
+        nav_download: "Download",
+        nav_install: "Install",
+
+        // Hero
+        hero_subtitle: "Simple and modern Minecraft Rig for Blender 4.2+",
+        pill_version: "Latest Version: ",
+
+        // Features
+        features_title: "Features",
+        f1_t: "Math-Based Shader",
+        f1_p: "Modular face shader built entirely on math nodes, allowing for easy modification.",
+        f2_t: "Extension (Addon)",
+        f2_p: "The extension allows you to add Just Rig to your scene in a couple of clicks, with all settings in one place.",
+        f3_t: "Solid Mode Support",
+        f3_p: "The face renders correctly in Solid Mode (Workbench), allowing for lag-free animation without losing convenience.",
+        f5_t: "Optimization",
+        f5_p: "On r7 5700x: 150-165 fps in Solid Mode, 85-100 fps in Shading Mode.<br>On i5 12400F: 110-125 fps in Solid Mode, 55-75 fps in Shading Mode.",
+
+        // Rules
         rules_title: "Usage Rules",
-        r1: "Free to use in any animations.",
-        r2: "Modification for your specific tasks is allowed.",
-        r3: "Attribution to author (Aspirata) is required for animations.",
+        license_description: "The rig is licensed under <a href='https://github.com/Aspirata/Just-Rig/blob/Beta/LICENSE' target='_blank' class='license-link'>CC BY</a>",
+        rules_allowed: "Allowed",
+        rules_restricted: "Important",
+        r1: "Free to use in any animations (including commercial ones).",
+        r2: "You are allowed to modify and fork the rig for your specific needs.",
+        r3: "When publishing projects using the rig (animations, forks), you must credit the author (Aspirata). Exception: static artworks/renders do not require credit.",
+
+        // Download
         download_title: "Ready to start?",
-        download_sub: "Click the button below to download the archive. Then we will show you how to install it.",
+        download_sub: "Click the button below to download the rig archive.",
         btn_download: "DOWNLOAD JUST RIG",
-        install_title: "Installation Guide",
-        step1_title: "Download File",
-        step1_desc: "Make sure you downloaded <b>just_rig.zip</b>. Do not unzip it.",
-        step2_title: "Drag & Drop",
-        step2_desc: "Open Blender 4.2+ and simply drag and drop the file into the 3D Viewport.",
-        step3_title: "Add Rig",
-        step3_desc: "Press <b>Shift + A</b>, navigate to <b>Just Rig</b> and add the character.",
+
+        // Install
+        install_title: "Installation",
+        install_step1_desc: "Open Blender 4.2+ and simply drag and drop the file into the 3D Viewport.",
+        install_step2_title: "Add Rig",
+        install_step2_desc: "Press <b>Shift + A</b>, navigate to <b>Just Rig</b> and add the character.",
+        install_step3_title: "Done!",
+        install_step3_desc: "Everything is ready! What else is there to say ?",
+        
+        // Controls / Footer
         btn_prev: "← Back",
         btn_next: "Next →",
-        btn_finish: "Finish!",
-        nav: { home: "Home", features: "Features", rules: "Rules", download: "Download", install: "Install" }
-    },
-    ru: {
-        btn_prev: "← Назад",
-        btn_next: "Далее →",
-        btn_finish: "Готово!",
-        nav: { home: "Главная", features: "Особенности", rules: "Правила", download: "Скачать", install: "Установка" }
+        credits_text: "Created by Aspirata with major help from Gemini 3 Pro. Hosted on GitHub."
     }
 };
 
-let originalRU = {};
-let currentStep = 0;
-const totalSteps = 3;
+// Объект для хранения оригинального (русского) текста из HTML
+const originalText = {};
 
-document.querySelectorAll('[data-key]').forEach(el => {
-    originalRU[el.getAttribute('data-key')] = el.innerHTML;
-});
-
-const savedLang = localStorage.getItem('preferredLang') || 'ru';
-applyLanguage(savedLang);
-
-const langSwitch = document.getElementById('langSwitch');
-if (langSwitch) {
-    langSwitch.addEventListener('click', function() {
-        const isEn = this.classList.contains('en-mode');
-        applyLanguage(isEn ? 'ru' : 'en');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Сохраняем исходный текст (RU) из HTML в память
+    document.querySelectorAll('[data-key]').forEach(el => {
+        originalText[el.getAttribute('data-key')] = el.innerHTML;
     });
-}
 
-document.querySelectorAll('.nav-dot').forEach(dot => {
-    dot.addEventListener('click', () => {
-        scrollToId(dot.getAttribute('data-section'));
+    // Сохраняем исходные лейблы навигации
+    document.querySelectorAll('.nav-dot').forEach(dot => {
+        const section = dot.getAttribute('data-section');
+        originalText[`nav_${section}`] = dot.getAttribute('data-label');
     });
-});
 
-document.getElementById('downloadBtn').addEventListener('click', function(e) {
-    const installSection = document.getElementById('install');
-    
-    if (installSection) {
-        setTimeout(() => {
-            installSection.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
-        }, 500);
+    // 2. Инициализация языка
+    const savedLang = localStorage.getItem('preferredLang') || 'ru';
+    // Если сохранен EN, применяем его, иначе оставляем как есть (HTML уже на RU)
+    if (savedLang === 'en') {
+        applyLanguage('en');
     }
-});
 
-const prevBtn = document.getElementById('prevStepBtn');
-const nextBtn = document.getElementById('nextStepBtn');
-if (prevBtn) prevBtn.addEventListener('click', () => changeStep(-1));
-if (nextBtn) nextBtn.addEventListener('click', () => changeStep(1));
-
-document.querySelectorAll('.step-indicators .dot').forEach((dot, index) => {
-    dot.style.cursor = 'pointer';
-    dot.addEventListener('click', () => {
-        currentStep = index;
-        updateSliderUI();
-    });
-});
-
-updateSliderUI();
-
-const versionEl = document.getElementById('latestVersion');
-if (versionEl) {
-    fetch('https://api.github.com/repos/Aspirata/Just-Rig/releases/latest')
-        .then(res => {
-            if (!res.ok) throw new Error('Release not found');
-            return res.json();
-        })
-        .then(data => versionEl.textContent = data.name)
-        .catch(() => versionEl.textContent = "Release not found");
-}
-
-const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1, rootMargin: "0px 0px -10% 0px" });
-
-document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-
-function scrollToId(id) {
-    const section = document.getElementById(id);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        history.pushState(null, null, `#${id}`);
-    }
-}
-
-function changeStep(direction) {
-    const newStep = currentStep + direction;
-    if (newStep >= 0 && newStep < totalSteps) {
-        currentStep = newStep;
-        updateSliderUI();
-    }
-}
-
-function updateSliderUI() {
-    const track = document.getElementById('installTrack');
-    const steps = document.querySelectorAll('.install-step');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.getElementById('prevStepBtn');
-    const nextBtn = document.getElementById('nextStepBtn');
-
-    if (!track) return;
-
-    track.style.transform = `translateX(-${currentStep * 100}%)`;
-    steps.forEach((step, index) => {
-        const isActive = index === currentStep;
-        step.classList.toggle('active-step', isActive);
-        const video = step.querySelector('video');
-            if (video) {
-                if (isActive) {
-                    video.currentTime = 0;
-                    video.play();
-                } else {
-                    video.pause();
-                }
-        }
-    });
-    dots.forEach((dot, index) => dot.classList.toggle('active', index === currentStep));
-    
+    // 3. Обработчик переключателя
     const langSwitch = document.getElementById('langSwitch');
-    const isEn = langSwitch && langSwitch.classList.contains('en-mode');
-    const isLast = (currentStep === totalSteps - 1);
-    const isFirst = (currentStep === 0);
+    if (langSwitch) {
+        // Синхронизируем визуальное состояние кнопки при загрузке
+        if (savedLang === 'en') langSwitch.classList.add('en-mode');
 
-    if (prevBtn) {
-        prevBtn.disabled = isFirst;
-        if (isLast) {
-            prevBtn.classList.replace('btn-secondary', 'btn-primary');
-        } else {
-            prevBtn.classList.replace('btn-primary', 'btn-secondary');
-        }
+        langSwitch.addEventListener('click', () => {
+            const isCurrentlyEn = langSwitch.classList.contains('en-mode');
+            applyLanguage(isCurrentlyEn ? 'ru' : 'en');
+        });
     }
 
-    if (nextBtn) {
-        if (isLast) {
-            nextBtn.disabled = true; 
-            nextBtn.classList.replace('btn-primary', 'btn-secondary');
-        } else {
-            nextBtn.disabled = false;
-            nextBtn.classList.replace('btn-secondary', 'btn-primary');
-        }
-    }
-}
+    // 4. Анимация появления (Scroll Reveal)
+    setupScrollReveal();
+
+    // 5. Логика карусели
+    setupCarousel();
+
+    // 6. Навигация по точкам
+    document.querySelectorAll('.nav-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const id = dot.getAttribute('data-section');
+            const section = document.getElementById(id);
+            if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
+
+    // 7. Получение версии с GitHub
+    fetchVersion();
+});
+
+// --- Функции ---
 
 function applyLanguage(lang) {
     const langSwitch = document.getElementById('langSwitch');
-    if (!langSwitch) return;
-
-    if (lang === 'en') langSwitch.classList.add('en-mode');
-    else langSwitch.classList.remove('en-mode');
+    if (langSwitch) {
+        langSwitch.classList.toggle('en-mode', lang === 'en');
+    }
     
     localStorage.setItem('preferredLang', lang);
 
+    // Выбираем источник: либо английский словарь, либо сохраненный оригинал
+    const sourceData = (lang === 'en') ? translations.en : originalText;
+
+    if (!sourceData) return;
+
+    // Обновляем тексты
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        if (lang === 'en') {
-            if (translations.en[key]) el.innerHTML = translations.en[key];
-        } else {
-            if (originalRU[key]) el.innerHTML = originalRU[key];
+        if (sourceData[key] !== undefined) {
+            el.innerHTML = sourceData[key];
         }
     });
 
+    // Обновляем навигацию
     document.querySelectorAll('.nav-dot').forEach(dot => {
-        const secKey = dot.getAttribute('data-section');
-        const labelObj = lang === 'en' ? translations.en.nav : translations.ru.nav;
-        if (labelObj && labelObj[secKey]) dot.setAttribute('data-label', labelObj[secKey]);
+        const sec = dot.getAttribute('data-section');
+        const navKey = `nav_${sec}`;
+        if (sourceData[navKey] !== undefined) {
+            dot.setAttribute('data-label', sourceData[navKey]);
+        }
     });
-
-    updateSliderUI();
+    
+    // Обновляем текст кнопок слайдера (они динамические, поэтому нужна отдельная проверка)
+    updateSliderControlsText(sourceData);
 }
 
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navDots = document.querySelectorAll('.nav-dot');
-    let currentId = '';
-    const scrollPos = window.scrollY + (window.innerHeight / 2);
+function updateSliderControlsText(data) {
+    const prevBtn = document.getElementById('prevStepBtn');
+    const nextBtn = document.getElementById('nextStepBtn');
+    if (prevBtn && data.btn_prev) prevBtn.innerText = data.btn_prev;
+    if (nextBtn && data.btn_next) nextBtn.innerText = data.btn_next;
+}
 
-    sections.forEach(s => {
-        if (scrollPos >= s.offsetTop && scrollPos < s.offsetTop + s.offsetHeight) {
-            currentId = s.getAttribute('id');
+function setupScrollReveal() {
+    try {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -10% 0px" });
+
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        if (revealElements.length > 0) {
+            revealElements.forEach(el => observer.observe(el));
+        } else {
+            document.body.classList.add('force-visible');
         }
+    } catch (e) {
+        console.error("Observer failed, showing all content:", e);
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-visible'));
+    }
+}
+
+function fetchVersion() {
+    const versionEl = document.getElementById('latestVersion');
+    if (versionEl) {
+        fetch('https://api.github.com/repos/Aspirata/Just-Rig/releases/latest')
+            .then(res => res.ok ? res.json() : Promise.reject())
+            .then(data => versionEl.textContent = data.name)
+            .catch(() => versionEl.textContent = "Release not found");
+    }
+}
+
+function setupCarousel() {
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.install-step');
+    const totalSteps = steps.length;
+    const track = document.getElementById('installTrack');
+    const prevBtn = document.getElementById('prevStepBtn');
+    const nextBtn = document.getElementById('nextStepBtn');
+    const dots = document.querySelectorAll('.step-indicators .dot');
+
+    function updateUI() {
+        if (!track) return;
+        track.style.transform = `translateX(-${currentStep * 100}%)`;
+
+        steps.forEach((step, index) => {
+            const isActive = index === currentStep;
+            step.classList.toggle('active-step', isActive);
+            const video = step.querySelector('video');
+            if (video) isActive ? (video.currentTime = 0, video.play()) : video.pause();
+        });
+
+        dots.forEach((dot, index) => dot.classList.toggle('active', index === currentStep));
+
+        if (prevBtn) {
+            prevBtn.disabled = currentStep === 0;
+            prevBtn.classList.toggle('btn-secondary', currentStep !== totalSteps - 1);
+        }
+        if (nextBtn) {
+            const isLast = currentStep === totalSteps - 1;
+            nextBtn.disabled = isLast;
+            nextBtn.classList.toggle('btn-primary', !isLast);
+            nextBtn.classList.toggle('btn-secondary', isLast);
+        }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        if (currentStep > 0) { currentStep--; updateUI(); }
     });
 
-    if (window.scrollY < 100) currentId = 'home';
-    navDots.forEach(dot => dot.classList.toggle('active', dot.getAttribute('data-section') === currentId));
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        if (currentStep < totalSteps - 1) { currentStep++; updateUI(); }
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => { currentStep = index; updateUI(); });
+    });
+
+    updateUI();
+}
+
+// Скролл-спай (подсветка активной точки в навигации)
+let isScrolling = false;
+window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+            const scrollPos = window.scrollY + (window.innerHeight / 2);
+            let currentId = 'home';
+            document.querySelectorAll('section').forEach(s => {
+                if (scrollPos >= s.offsetTop) currentId = s.getAttribute('id');
+            });
+            document.querySelectorAll('.nav-dot').forEach(dot => 
+                dot.classList.toggle('active', dot.getAttribute('data-section') === currentId)
+            );
+            isScrolling = false;
+        });
+        isScrolling = true;
+    }
 });

@@ -357,8 +357,8 @@ class JustRigAppend(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        current_dir = os.path.dirname(__file__)
-        blend_file_path = os.path.join(current_dir, "just_rig.blend")
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        blend_file_path = next((os.path.join(current_dir, file) for file in os.listdir(current_dir) if file.endswith(".blend")), None)
 
         if not os.path.exists(blend_file_path):
             self.report({'ERROR'}, f"Rig File not found: {blend_file_path}")

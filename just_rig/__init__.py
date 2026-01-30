@@ -70,8 +70,8 @@ class JustRigUI(bpy.types.Panel):
         eye_color_names = [
             "R Eye", "L Eye",
             "R Iris", "L Iris",
-            "Pupils", "R Pupil", "L Pupil",
-            "Sparks", "R Spark", "L Spark"
+            "R Pupil", "L Pupil",
+            "R Spark", "L Spark"
         ]
         self.eye_color_inputs = self._get_node_inputs(node_group, eye_color_names)
         
@@ -130,7 +130,7 @@ class JustRigUI(bpy.types.Panel):
         row = box.row(align=True)
         self.settings_button(row, self.ui_props, 'info_expanded')
         if self.ui_props.info_expanded:
-            box.label(text=f"Author: Aspirata", icon='COMMUNITY')
+            box.label(text=f"Author: {self.armature['Author']}", icon='COMMUNITY')
             box.label(text=f"Rig ID: {self.armature['Rig ID']}", icon='ARMATURE_DATA')
             box.label(text=f"Version: {self.armature['Rig Version']}", icon='FILE_TICK')
 
@@ -230,7 +230,7 @@ class JustRigUI(bpy.types.Panel):
                 row2.enabled = self.settings_bones["Facial Settings"]["Eyes"]
 
                 row = sbox.row()
-                row.prop(self.eye_color_inputs["Pupils"], 'default_value', text="Pupils")
+                row.prop(self.settings_bones["Facial Settings"], '["Pupils"]')
                 self.settings_button(row, self.ui_props, 'pupils_settings_expanded', True, True, True)
                 if self.ui_props.pupils_settings_expanded:
                     tbox = sbox.box()
@@ -247,7 +247,7 @@ class JustRigUI(bpy.types.Panel):
                 row.enabled = self.settings_bones["Facial Settings"]["Eyes"]
 
                 row = sbox.row()
-                row.prop(self.eye_color_inputs["Sparks"], 'default_value', text="Sparks")
+                row.prop(self.settings_bones["Facial Settings"], '["Sparks"]')
                 self.settings_button(row, self.ui_props, 'sparks_settings_expanded', True, True, True)
                 if self.ui_props.sparks_settings_expanded:
                     tbox = sbox.box()

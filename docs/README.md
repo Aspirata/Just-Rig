@@ -1,45 +1,43 @@
 # Just Simple Rig
-
-![GitHub downloads](https://img.shields.io/github/downloads/Aspirata/Just-Simple-Rig/total)
+![GitHub downloads](https://img.shields.io/github/downloads/Aspirata/Just-Rig/total)
 [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/AfWWAhEU)
 
-**Just Simple Rig** — это просто риг персонажа Minecraft для Blender 4.2+. Я старался сделать этот риг достаточно простым для модификации, настройки и использования.
+**Just Simple Rig** is a simple Minecraft character rig for Blender 4.2+. I tried to make this rig simple enough for modification, customization, and use.
 
-## Сайт
-Риг имеет [свой вебсайт](https://aspirata.github.io/Just-Simple-Rig). Исходники и лицензию сайта можно посмотреть в [отдельной ветке](https://github.com/Aspirata/Just-Simple-Rig/tree/Website)
+## Website
+The rig has [its own website](https://aspirata.github.io/Just-Simple-Rig). The website source code and license can be found in a [separate branch](https://github.com/Aspirata/Just-Simple-Rig/tree/Website)
 
-## 🚀 Быстрый старт
-
-### Требования
+## 🚀 Quick Start
+### Requirements
 * **Blender: 4.2+**
 
-### Как установить риг и добавить его в сцену
-1. [Скачайте последний релиз Just Simple Rig](https://github.com/Aspirata/Just-Simple-Rig/releases/latest)
-2. Перенесите just_simple_rig.zip на окно блендера и установите расширение  
+### How to install the rig and add it to your scene
+1. [Download the latest Just Simple Rig release](https://github.com/Aspirata/Just-Simple-Rig/releases/latest)
+
+2. Drag and drop `just_simple_rig.zip` onto the Blender window and install the extension  
 ![](install_extension.webp)
-3. Нажмите **Shift + A** и выбирите **Just Simple Rig**  
+
+3. Press **Shift + A** and select **Just Simple Rig**  
 ![](add_just_rig.webp)
 
-## 💬 Обратная связь
-
-Если вы нашли баг или у вас есть идеи по улучшению **Just Simple Rig**, я буду рад их услышать!
-* **Мой Discord Сервер: [Aspirata's Cove](https://discord.gg/gpfgbkdJ97)** 
-* **Мой Ник в Discord: aspirata**
+## 💬 Feedback
+If you found a bug or have ideas for improving **Just Simple Rig**, I'd be happy to hear them!
+* **My Discord Server: [Aspirata's Cove](https://discord.gg/gpfgbkdJ97)** 
+* **My Discord Username: aspirata**
 
 ## Special Thanks
-
 ### `Dialm`
-Помощь с исправлением UV  
+Help with UV fixing  
 🔗 [Telegram](https://t.me/dialmtg) | [Youtube](https://www.youtube.com/@loot_studio) | [Artstation](https://www.artstation.com/dimzol)
 
 ### `Flok`
-Тестирование и помощь в нахождении багов  
+Testing and help finding bugs  
 🔗 [Telegram](https://t.me/hatkaflok) | [Discord](https://discord.gg/pNava8R5wA) | [Youtube](https://www.youtube.com/@flokAnim)
 
-## 📄 Лицензия
+## 📄 License
+This rig is distributed under the **[CCBY](LICENSE)** license.  
+When publishing projects using the rig (animations, rig forks), credit the author (Aspirata) and optionally include one or more of the links below. The exception is artworks - when using the rig in artwork, crediting the author is optional.
 
-Этот риг распространяется по лицензии **[CCBY](LICENSE)**.  
-При публикации проектов с использованием рига (анимаций, форков рига) укажите автора (Aspirata) и по желанию одну или несколько из указанных ниже ссыллок. Исключением являются арты, при использовании рига в арте указание автора необязательно.
-* **Мой Discord Сервер: [Aspirata's Cove](https://discord.gg/gpfgbkdJ97)** 
+* **My Discord Server:** [Aspirata's Cove](https://discord.gg/gpfgbkdJ97) 
 * **YouTube:** [@Aspirata1421](https://www.youtube.com/@Aspirata1421)  
 * **X (Twitter):** [@Aspirata181256](https://x.com/Aspirata181256)

@@ -67,12 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Инициализация языка
-    const savedLang = localStorage.getItem('preferredLang') || 'ru';
-    // Если сохранен EN, применяем его, иначе оставляем как есть (HTML уже на RU)
+    let savedLang = localStorage.getItem('preferredLang');
+
+    // Если язык не сохранен (первое посещение), определяем по браузеру
+    if (!savedLang) {
+        const browserLang = navigator.language || navigator.userLanguage;
+        // Проверяем, начинается ли язык браузера с 'en' (en, en-US, en-GB и т.д.)
+        savedLang = browserLang.toLowerCase().startsWith('en') ? 'en' : 'ru';
+        localStorage.setItem('preferredLang', savedLang);
+    }
+
+    // Применяем сохраненный или определенный язык
     if (savedLang === 'en') {
         applyLanguage('en');
     }
-
     // 3. Обработчик переключателя
     const langSwitch = document.getElementById('langSwitch');
     if (langSwitch) {

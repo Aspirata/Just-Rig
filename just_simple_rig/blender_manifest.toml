@@ -1,13 +1,13 @@
 schema_version = "1.0.0"
 
-id = "just_rig"
-version = "0.1.0"
-name = "Just Rig"
+id = "just_simple_rig"
+version = "1.0.0"
+name = "Just Simple Rig"
 tagline = "A simple and flexible Minecraft character rig"
 maintainer = "Aspirata"
 type = "add-on"
 
-website = "https://github.com/Aspirata/Just-Rig"
+website = "https://aspirata.github.io/Just-Simple-Rig"
 
 tags = ["Animation", "Rigging"]
 
@@ -20,7 +20,7 @@ license = [
 ]
 
 copyright = [
-  "2025-2025 Aspirata",
+  "2025-2026 Aspirata",
 ]
 
 [permissions]

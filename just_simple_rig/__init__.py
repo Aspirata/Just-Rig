@@ -2,18 +2,18 @@ import bpy, os
 from bpy.props import BoolProperty, PointerProperty
 
 
-class JustRigUI(bpy.types.Panel):
-    bl_label = "Just Rig"
-    bl_idname = "VIEW3D_PT_just_rig_ui"
+class JustSimpleRigUI(bpy.types.Panel):
+    bl_label = "Just Simple Rig"
+    bl_idname = "VIEW3D_PT_just_simple_rig_ui"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Just Rig'
+    bl_category = 'Just Simple Rig'
     bl_options = {'HIDE_HEADER'}
 
     @classmethod
     def poll(cls, context):
         obj = context.active_object
-        return obj and obj.type == 'ARMATURE' and obj.data.get("Rig ID", "") == "Just Rig"
+        return obj and obj.type == 'ARMATURE' and obj.data.get("Rig ID", "") == "Just Simple Rig"
     
     @staticmethod
     def settings_button(layout, data, prop_name: str, highlight=False, no_text=False, invert_arrow=False):
@@ -102,7 +102,7 @@ class JustRigUI(bpy.types.Panel):
     def draw(self, context):
         self.object_armature = context.active_object
         self.armature = self.object_armature.data
-        self.ui_props = context.active_object.just_rig_ui_props
+        self.ui_props = context.active_object.just_simple_rig_ui_props
         
         error = self.update_all_color_inputs()
         if error:
@@ -351,9 +351,9 @@ class JustRigUI(bpy.types.Panel):
                 row3.prop(self.settings_bones["L Leg Settings"], '["IK"]', slider=True)
 
 
-class JustRigAppend(bpy.types.Operator):
-    bl_idname = "just_rig.append_rig"
-    bl_label = "Just Rig"
+class JustSimpleRigAppend(bpy.types.Operator):
+    bl_idname = "just_simple_rig.append_rig"
+    bl_label = "Just Simple Rig"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
@@ -372,17 +372,17 @@ class JustRigAppend(bpy.types.Operator):
                 self.report({'WARNING'}, "No collections found in file.")
                 return {'CANCELLED'}
 
-            just_rig_collection = next((col for col in data_to.collections if "Just Rig" in col.name), None)
-            if not just_rig_collection:
-                self.report({'WARNING'}, 'Collection "Just Rig" not found in file.')
+            just_simple_rig_collection = next((col for col in data_to.collections if "Just Simple Rig" in col.name), None)
+            if not just_simple_rig_collection:
+                self.report({'WARNING'}, 'Collection "Just Simple Rig" not found in file.')
                 return {'CANCELLED'}
             
-            context.scene.collection.children.link(just_rig_collection)
-            just_armature = next((obj for obj in just_rig_collection.objects if obj.type == 'ARMATURE'), None)
+            context.scene.collection.children.link(just_simple_rig_collection)
+            just_simple_armature = next((obj for obj in just_simple_rig_collection.objects if obj.type == 'ARMATURE'), None)
             cursor_location = bpy.context.scene.cursor.location
-            just_armature.pose.bones["Root"].matrix.translation = cursor_location
+            just_simple_armature.pose.bones["Root"].matrix.translation = cursor_location
 
-            self.report({'INFO'}, f"Collection '{just_rig_collection.name}' successfully added.")
+            self.report({'INFO'}, f"Collection '{just_simple_armature.name}' successfully added.")
             return {'FINISHED'}
 
         except Exception as e:
@@ -390,12 +390,12 @@ class JustRigAppend(bpy.types.Operator):
             return {'CANCELLED'}
 
 
-def add_just_rig_menu(self, context):
-    self.layout.operator(JustRigAppend.bl_idname, icon='ARMATURE_DATA')
+def add_just_simple_rig_menu(self, context):
+    self.layout.operator(JustSimpleRigAppend.bl_idname, icon='ARMATURE_DATA')
 
 
 # UI Properties
-class JustRigUIProperties(bpy.types.PropertyGroup):
+class JustSimpleRigUIProperties(bpy.types.PropertyGroup):
     info_expanded: BoolProperty(name="Info", default=True)
     general_settings_expanded: BoolProperty(name="General Settings", default=True)
     bevel_settings_expanded: BoolProperty(name="Bevel Settings", default=False)
@@ -414,27 +414,27 @@ class JustRigUIProperties(bpy.types.PropertyGroup):
 
 
 classes = (
-    JustRigUIProperties,
-    JustRigUI,
-    JustRigAppend,
+    JustSimpleRigUIProperties,
+    JustSimpleRigUI,
+    JustSimpleRigAppend,
 )
 
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
 
-    bpy.types.Object.just_rig_ui_props = PointerProperty(type=JustRigUIProperties)
+    bpy.types.Object.just_simple_rig_ui_props = PointerProperty(type=JustSimpleRigUIProperties)
 
-    if add_just_rig_menu not in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
-        bpy.types.VIEW3D_MT_add.append(add_just_rig_menu)
+    if add_just_simple_rig_menu not in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
+        bpy.types.VIEW3D_MT_add.append(add_just_simple_rig_menu)
 
 
 def unregister():
-    if add_just_rig_menu in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
-        bpy.types.VIEW3D_MT_add.remove(add_just_rig_menu)
+    if add_just_simple_rig_menu in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
+        bpy.types.VIEW3D_MT_add.remove(add_just_simple_rig_menu)
 
-    if hasattr(bpy.types.Object, 'just_rig_ui_props'):
-        del bpy.types.Object.just_rig_ui_props
+    if hasattr(bpy.types.Object, 'just_simple_rig_ui_props'):
+        del bpy.types.Object.just_simple_rig_ui_props
 
     for cls in reversed(classes):
         bpy.utils.unregister_class(cls)

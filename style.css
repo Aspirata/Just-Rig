@@ -145,15 +145,17 @@ section:last-of-type { min-height: auto; border-bottom: none; }
 /* =========================================
    7. FEATURES
    ========================================= */
-.features-list { display: flex; flex-direction: column; gap: 40px; width: 100%; }
-.feature-panel { display: flex; align-items: stretch; gap: 40px; padding: 30px; background: var(--bg-surface); backdrop-filter: blur(12px); border: 1px solid var(--border-light); border-radius: var(--radius-lg); text-align: left; transition: transform 0.3s, border-color 0.3s; }
-.feature-panel.reverse { flex-direction: row-reverse; }
-.feature-panel:hover { transform: translateY(-5px); border-color: var(--border-hover); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-.feature-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.feature-title { font-size: 1.5rem; margin-bottom: 12px; color: #fff; }
-.feature-media { flex: 1.2; aspect-ratio: 16/9; background: #000; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; }
-.feature-media img, .feature-media video { width: 100%; height: 100%; object-fit: cover; }
-.media-placeholder { color: var(--text-muted); font-family: monospace; }
+.features-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; width: 100%; }
+.feature-panel { display: flex; flex-direction: column; background: var(--bg-surface); backdrop-filter: blur(12px); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; text-align: left; height: 100%; }
+.feature-panel:hover { transform: translateY(-5px); border-color: var(--border-hover); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.feature-media { width: 100%; position: relative; background: #000; border-bottom: 1px solid var(--border-light); overflow: hidden; aspect-ratio: 16/9; max-height: 300px; }
+.feature-media::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--bg-image); background-size: cover; background-position: center; filter: blur(30px) brightness(0.6); transform: scale(1.2); z-index: 0; }
+.feature-media img, .feature-media video { width: 100%; height: 100%; object-fit: contain; object-position: center center; transition: transform 0.5s ease; display: block; position: relative; z-index: 1; }
+.feature-panel:hover .feature-media img, .feature-panel:hover .feature-media video { transform: scale(1.05); }
+.feature-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.feature-title { font-size: 1.25rem; margin-bottom: 12px; color: #fff; font-weight: 700; }
+.feature-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+@media (max-width: 900px) { .features-list { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
 
 /* =========================================
    8. RULES

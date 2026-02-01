@@ -16,7 +16,7 @@ const translations = {
         f1_t: "Math-Based Shader",
         f1_p: "Modular face shader built entirely on math nodes, allowing for easy modification.",
         f2_t: "Extension (Addon)",
-        f2_p: "The extension allows you to add Just Rig to your scene in a couple of clicks, with all settings in one place.",
+        f2_p: "The extension allows you to add Just Simple Rig to your scene in a couple of clicks, with all settings in one place.",
         f3_t: "Solid Mode Support",
         f3_p: "The face renders correctly in Solid Mode (Workbench), allowing for lag-free animation without losing convenience.",
         f5_t: "Optimization",
@@ -24,7 +24,7 @@ const translations = {
 
         // Rules
         rules_title: "Usage Rules",
-        license_description: "The rig is licensed under <a href='https://github.com/Aspirata/Just-Rig/blob/Beta/LICENSE' target='_blank' class='license-link'>CC BY</a>",
+        license_description: "The rig is licensed under <a href='https://github.com/Aspirata/Just-Simple-Rig/blob/Beta/LICENSE' target='_blank' class='license-link'>CC BY</a>",
         rules_allowed: "Allowed",
         rules_restricted: "Important",
         r1: "Free to use in any animations (including commercial ones).",
@@ -34,20 +34,20 @@ const translations = {
         // Download
         download_title: "Ready to start?",
         download_sub: "Click the button below to download the rig archive.",
-        btn_download: "DOWNLOAD JUST RIG",
+        btn_download: "DOWNLOAD JUST SIMPLE RIG",
 
         // Install
         install_title: "Installation",
         install_step1_desc: "Open Blender 4.2+ and simply drag and drop the file into the 3D Viewport.",
         install_step2_title: "Add Rig",
-        install_step2_desc: "Press <b>Shift + A</b>, navigate to <b>Just Rig</b> and add the character.",
+        install_step2_desc: "Press <b>Shift + A</b>, navigate to <b>Just Simple Rig</b> and add the character.",
         install_step3_title: "Done!",
         install_step3_desc: "Everything is ready! What else is there to say ?",
         
         // Controls / Footer
         btn_prev: "← Back",
         btn_next: "Next →",
-        credits_text: "Created by Aspirata with major help from Gemini 3 Pro. Hosted on GitHub."
+        credits_text: "Created by Aspirata with the big help from Gemini 3 Pro <br> <a href='https://github.com/Aspirata/Just-Simple-Rig/tree/Website' target='_blank' class='license-link'>Hosting on GitHub</a>"
     }
 };
 
@@ -173,7 +173,7 @@ function setupScrollReveal() {
 function fetchVersion() {
     const versionEl = document.getElementById('latestVersion');
     if (versionEl) {
-        fetch('https://api.github.com/repos/Aspirata/Just-Rig/releases/latest')
+        fetch('https://api.github.com/repos/Aspirata/Just-Simple-Rig/releases/latest')
             .then(res => res.ok ? res.json() : Promise.reject())
             .then(data => versionEl.textContent = data.name)
             .catch(() => versionEl.textContent = "Release not found");

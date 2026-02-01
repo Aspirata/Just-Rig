@@ -27,9 +27,9 @@ const translations = {
         license_description: "The rig is licensed under <a href='https://github.com/Aspirata/Just-Simple-Rig/blob/Beta/LICENSE' target='_blank' class='license-link'>CC BY</a>",
         rules_allowed: "Allowed",
         rules_restricted: "Important",
-        r1: "Free to use in any animations (including commercial ones).",
-        r2: "You are allowed to modify and fork the rig for your specific needs.",
-        r3: "When publishing projects using the rig (animations, forks), you must credit the author (Aspirata). Exception: static artworks/renders do not require credit.",
+        r1: "Free to use in any animations (including commercial ones)",
+        r2: "You are allowed to modify and fork the rig",
+        r3: "When publishing projects that use the rig (animations, forks), please credit the author — Aspirata, and optionally include one or more of the links below. For artwork, crediting the author is not required",
 
         // Download
         download_title: "Ready to start?",

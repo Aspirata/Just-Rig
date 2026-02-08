@@ -1,4 +1,4 @@
-import bpy, os
+import bpy, os, traceback
 from bpy.props import BoolProperty, PointerProperty
 
 
@@ -89,7 +89,7 @@ class JustSimpleRigUI(bpy.types.Panel):
         
         return ""
 
-    def show_error(self, error: str):
+    def show_error(self, error: str, detailed_error: str = ""):
         box = self.layout.box()
         box.scale_y = 1.4
         row = box.row()
@@ -98,6 +98,8 @@ class JustSimpleRigUI(bpy.types.Panel):
         row = box.row()
         ds_link_op = row.operator("wm.url_open", text="Report to Aspirata's Discord Server", icon='URL')
         ds_link_op.url = "https://discord.gg/emBFTgjUrz"
+
+        print(detailed_error)
 
     def draw(self, context):
         self.object_armature = context.active_object
@@ -123,7 +125,7 @@ class JustSimpleRigUI(bpy.types.Panel):
             self.draw_facial_settings_section(layout)
             self.draw_limbs_settings_section(layout)
         except Exception as e:
-            self.show_error(f"UI draw error: {e}")
+            self.show_error(f"UI draw error: {e}", traceback.format_exc())
 
     def draw_info_section(self, layout):
         box = layout.box()
@@ -242,7 +244,7 @@ class JustSimpleRigUI(bpy.types.Panel):
                     row1 = col.row(align=True)
                     row1.prop(self.eye_color_inputs["R Pupil"], 'default_value', text="")
                     row1.prop(self.eye_color_inputs["L Pupil"], 'default_value', text="")
-                    row1.enabled = self.eye_color_inputs["Pupils"].default_value
+                    row1.enabled = self.settings_bones["Facial Settings"]["Pupils"]
 
                 row.enabled = self.settings_bones["Facial Settings"]["Eyes"]
 
@@ -259,7 +261,7 @@ class JustSimpleRigUI(bpy.types.Panel):
                     row1 = col.row(align=True)
                     row1.prop(self.eye_color_inputs["R Spark"], 'default_value', text="")
                     row1.prop(self.eye_color_inputs["L Spark"], 'default_value', text="")
-                    row1.enabled = self.eye_color_inputs["Sparks"].default_value
+                    row1.enabled = self.settings_bones["Facial Settings"]["Sparks"]
                 row.enabled = self.settings_bones["Facial Settings"]["Eyes"]
 
             # Mouth
@@ -272,7 +274,7 @@ class JustSimpleRigUI(bpy.types.Panel):
                 row.label(text="Mouth Settings:", icon='MODIFIER_ON')
 
                 row = sbox.row()
-                row.prop(self.mouth_color_inputs["Tongue"], 'default_value', text="Tongue", toggle=True)
+                row.prop(self.settings_bones["Facial Settings"], '["Tongue"]', toggle=True)
                 row.enabled = self.settings_bones["Facial Settings"]["Mouth"]
 
                 col = sbox.column(align=True)
@@ -289,7 +291,7 @@ class JustSimpleRigUI(bpy.types.Panel):
 
                 row = sbox.row()
                 row.prop(self.mouth_color_inputs["Tongue Color"], 'default_value', text="")
-                row.enabled = self.settings_bones["Facial Settings"]["Mouth"] and self.mouth_color_inputs["Tongue"].default_value
+                row.enabled = self.settings_bones["Facial Settings"]["Mouth"] and self.settings_bones["Facial Settings"]["Tongue"]
 
     def draw_limbs_settings_section(self, layout):
         box = layout.box()
@@ -425,14 +427,19 @@ def register():
 
     bpy.types.Object.just_simple_rig_ui_props = PointerProperty(type=JustSimpleRigUIProperties)
 
-    if add_just_simple_rig_menu not in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
-        bpy.types.VIEW3D_MT_add.append(add_just_simple_rig_menu)
+    menu_funcs = bpy.types.VIEW3D_MT_add._dyn_ui_initialize()
+    for func in menu_funcs:
+        if not hasattr(func, '__name__') or func.__name__ != 'add_just_simple_rig_menu':
+            continue
+        try:
+            bpy.types.VIEW3D_MT_add.remove(func)
+        except:
+            pass
+
+    bpy.types.VIEW3D_MT_add.append(add_just_simple_rig_menu)
 
 
 def unregister():
-    if add_just_simple_rig_menu in bpy.types.VIEW3D_MT_add._dyn_ui_initialize():
-        bpy.types.VIEW3D_MT_add.remove(add_just_simple_rig_menu)
-
     if hasattr(bpy.types.Object, 'just_simple_rig_ui_props'):
         del bpy.types.Object.just_simple_rig_ui_props
 

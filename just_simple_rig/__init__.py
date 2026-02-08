@@ -379,7 +379,11 @@ class JustSimpleRigAppend(bpy.types.Operator):
                 self.report({'WARNING'}, 'Collection "Just Simple Rig" not found in file.')
                 return {'CANCELLED'}
             
-            context.scene.collection.children.link(just_simple_rig_collection)
+            # Append
+            active_collection = context.view_layer.active_layer_collection.collection
+            active_collection.children.link(just_simple_rig_collection)
+
+            # Move Root Bone to 3D Cursor
             just_simple_armature = next((obj for obj in just_simple_rig_collection.objects if obj.type == 'ARMATURE'), None)
             cursor_location = bpy.context.scene.cursor.location
             just_simple_armature.pose.bones["Root"].matrix.translation = cursor_location

@@ -1,4 +1,6 @@
-import bpy, os, traceback
+import os
+import traceback
+import bpy
 from bpy.props import BoolProperty, PointerProperty
 
 
@@ -74,6 +76,16 @@ class JustSimpleRigUI(bpy.types.Panel):
             "R Spark", "L Spark"
         ]
         self.eye_color_inputs = self._get_node_inputs(node_group, eye_color_names)
+
+        # Eyelashes
+        node_group, error = self._get_node_group_from_object("Eyelash", "Simplified Math Eyelashes")
+        if error:
+            return error
+        
+        eyelashes_color_names = [
+            "R Eyelash Color", "L Eyelash Color"
+        ]
+        self.eyelash_color_inputs = self._get_node_inputs(node_group, eyelashes_color_names)
         
         # Mouth
         node_group, error = self._get_node_group_from_object("Mouth", "Simplified Math Mouth")
@@ -202,8 +214,8 @@ class JustSimpleRigUI(bpy.types.Panel):
                 col = sbox.column(align=True)
 
                 row1 = col.row(align=True)
-                row1.prop(self.eyebrows_color_inputs["L Eyebrow Color"], 'default_value', text="")
                 row1.prop(self.eyebrows_color_inputs["R Eyebrow Color"], 'default_value', text="")
+                row1.prop(self.eyebrows_color_inputs["L Eyebrow Color"], 'default_value', text="")
                 row1.enabled = self.settings_bones["Facial Settings"]["Eyebrows"]
 
             # Eyes
@@ -230,6 +242,22 @@ class JustSimpleRigUI(bpy.types.Panel):
                 row2.prop(self.eye_color_inputs["R Iris"], 'default_value', text="")
                 row2.prop(self.eye_color_inputs["L Iris"], 'default_value', text="")
                 row2.enabled = self.settings_bones["Facial Settings"]["Eyes"]
+
+                row = sbox.row()
+                row.prop(self.settings_bones["Facial Settings"], '["Eyelashes"]')
+                self.settings_button(row, self.ui_props, 'eyelashes_settings_expanded', True, True, True)
+                if self.ui_props.eyelashes_settings_expanded:
+                    tbox = sbox.box()
+                    row = tbox.row()
+                    row.label(text="Eyelashes Colors:", icon='IMAGE')
+
+                    col = tbox.column(align=True)
+
+                    row1 = col.row(align=True)
+                    row1.prop(self.eyelash_color_inputs["R Eyelash Color"], 'default_value', text="")
+                    row1.prop(self.eyelash_color_inputs["L Eyelash Color"], 'default_value', text="")
+                    row1.enabled = self.settings_bones["Facial Settings"]["Eyelashes"]
+                row.enabled = self.settings_bones["Facial Settings"]["Eyes"]
 
                 row = sbox.row()
                 row.prop(self.settings_bones["Facial Settings"], '["Pupils"]')
@@ -409,6 +437,7 @@ class JustSimpleRigUIProperties(bpy.types.PropertyGroup):
     facial_settings_expanded: BoolProperty(name="Facial Settings", default=True)
     eyebrows_settings_expanded: BoolProperty(name="Eyebrows Settings", default=False)
     eyes_settings_expanded: BoolProperty(name="Eyes Settings", default=False)
+    eyelashes_settings_expanded: BoolProperty(name="Eyelashes Settings", default=False)
     pupils_settings_expanded: BoolProperty(name="Pupils Settings", default=False)
     sparks_settings_expanded: BoolProperty(name="Sparks Settings", default=False)
     colored_eyelids_settings_expanded: BoolProperty(name="Colored Eyelids Settings", default=False)
@@ -437,7 +466,7 @@ def register():
             continue
         try:
             bpy.types.VIEW3D_MT_add.remove(func)
-        except:
+        except Exception:
             pass
 
     bpy.types.VIEW3D_MT_add.append(add_just_simple_rig_menu)

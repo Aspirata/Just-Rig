@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "just_simple_rig"
-version = "1.0.0"
+version = "1.3.0"
 name = "Just Simple Rig"
 tagline = "A simple and flexible Minecraft character rig"
 maintainer = "Aspirata"
@@ -9,7 +9,7 @@ type = "add-on"
 
 website = "https://aspirata.github.io/Just-Simple-Rig"
 
-tags = ["Animation", "Rigging"]
+tags = ["Rigging"]
 
 blender_version_min = "4.2.0"
 

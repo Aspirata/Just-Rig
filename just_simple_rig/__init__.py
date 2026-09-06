@@ -396,7 +396,11 @@ class JustSimpleRigAppend(bpy.types.Operator):
         
         try:
             with bpy.data.libraries.load(blend_file_path, link=False) as (data_from, data_to):
-                data_to.collections = data_from.collections
+                if "Just Simple Rig" not in data_from.collections:
+                    self.report({'WARNING'}, 'Collection "Just Simple Rig" not found in file.')
+                    return {'CANCELLED'}
+
+                data_to.collections = ["Just Simple Rig"]
 
             if not data_to.collections:
                 self.report({'WARNING'}, "No collections found in file.")
